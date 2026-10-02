@@ -785,6 +785,8 @@ function sampleState() {
 let S;
 function loadInitial() {
   try { const raw = localStorage.getItem(LS_KEY); if (raw) { S = normalize(JSON.parse(raw)); return; } } catch (e) { }
+  // نسخه‌ای که با یک پرونده از پیش بارگذاری شده منتشر می‌شود (window.BMC_SEED)
+  if (window.BMC_SEED && window.BMC_SEED.blocks) { S = normalize(window.BMC_SEED); return; }
   S = sampleState();
 }
 let saveTimer;
