@@ -777,9 +777,14 @@ function sampleState() {
 
 let S;
 function loadInitial() {
-  try { const raw = localStorage.getItem(LS_KEY); if (raw) { S = normalize(JSON.parse(raw)); return; } } catch (e) { }
-  // نسخه‌ای که با یک پرونده از پیش بارگذاری شده منتشر می‌شود (window.BMC_SEED)
-  if (window.BMC_SEED && window.BMC_SEED.blocks) { S = normalize(window.BMC_SEED); return; }
+  // نسخه‌ای که با یک پرونده از پیش بارگذاری شده منتشر می‌شود (window.BMC_SEED)؛
+  // اگر seedId تازه‌تری منتشر شده باشد، جای پیش‌نویس قدیمی را می‌گیرد
+  const seed = window.BMC_SEED && window.BMC_SEED.blocks ? window.BMC_SEED : null;
+  try {
+    const raw = localStorage.getItem(LS_KEY);
+    if (raw) { const saved = JSON.parse(raw); if (!seed || saved.seedId === seed.seedId) { S = normalize(saved); return; } }
+  } catch (e) { }
+  if (seed) { S = normalize(seed); return; }
   S = sampleState();
 }
 let saveTimer;
