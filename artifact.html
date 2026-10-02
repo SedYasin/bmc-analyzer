@@ -1,0 +1,1513 @@
+<title>بوم کسب‌وکار پیام</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=Vazirmatn:wght@400;500;700;800&display=swap">
+<style>
+/* چیدمان: نوار مراحل بالا، بوم ۹ خانه‌ای به‌عنوان ناوبری، ویرایشگر یک بلوک در هر لحظه */
+:root{
+  --bg:#F2F4F3; --surface:#FFFFFF; --surface-2:#E8ECEA; --ink:#17242A; --ink-2:#4B5B61; --ink-3:#7C8A8E; --line:#D2D9D6;
+  --accent:#9A5A0C; --accent-ink:#FFFFFF; --accent-soft:#F5E7D1;
+  --r-d:#1F6F78; --r-d-soft:#DCEDEE; --r-f:#3D4E8C; --r-f-soft:#E0E4F3; --r-v:#A8610B; --r-v-soft:#F5E7D1; --r-s:#6B5B7B; --r-s-soft:#EAE5EF;
+  --ok:#2E7D4F; --ok-soft:#DDF0E4; --warn:#9C6512; --warn-soft:#F7EBD3; --crit:#B23A3A; --crit-soft:#F6DEDE; --info:#3D4E8C; --info-soft:#E0E4F3;
+  --s1:#B23A3A; --s2:#C87A2A; --s3:#A99A2E; --s4:#5E9A4E; --s5:#2E7D4F;
+  --f-display:"Reem Kufi","Vazirmatn",Tahoma,sans-serif; --f-body:"Vazirmatn",Tahoma,"Segoe UI",sans-serif;
+  --radius:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#10171A; --surface:#172126; --surface-2:#1E2A30; --ink:#E5ECEA; --ink-2:#A7B5B8; --ink-3:#73848A; --line:#2B3A40;
+  --accent:#E3A04A; --accent-ink:#1A1206; --accent-soft:#3A2B17;
+  --r-d:#5DB6BE; --r-d-soft:#173236; --r-f:#93A2E3; --r-f-soft:#1F2540; --r-v:#E3A04A; --r-v-soft:#3A2B17; --r-s:#BBA6D0; --r-s-soft:#2B2433;
+  --ok:#5CC28A; --ok-soft:#173225; --warn:#E3B04A; --warn-soft:#3A2F17; --crit:#EE7B7B; --crit-soft:#3D1D1D; --info:#93A2E3; --info-soft:#1F2540;
+  --s1:#EE7B7B; --s2:#E8A15A; --s3:#D6C75A; --s4:#8CCB7A; --s5:#5CC28A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10171A; --surface:#172126; --surface-2:#1E2A30; --ink:#E5ECEA; --ink-2:#A7B5B8; --ink-3:#73848A; --line:#2B3A40;
+  --accent:#E3A04A; --accent-ink:#1A1206; --accent-soft:#3A2B17;
+  --r-d:#5DB6BE; --r-d-soft:#173236; --r-f:#93A2E3; --r-f-soft:#1F2540; --r-v:#E3A04A; --r-v-soft:#3A2B17; --r-s:#BBA6D0; --r-s-soft:#2B2433;
+  --ok:#5CC28A; --ok-soft:#173225; --warn:#E3B04A; --warn-soft:#3A2F17; --crit:#EE7B7B; --crit-soft:#3D1D1D; --info:#93A2E3; --info-soft:#1F2540;
+  --s1:#EE7B7B; --s2:#E8A15A; --s3:#D6C75A; --s4:#8CCB7A; --s5:#5CC28A; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{direction:rtl}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14.5px;line-height:1.75;padding-inline:16px;padding-block:0 60px}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto}
+h1,h2,h3,h4{text-wrap:balance;margin:0}
+.muted{color:var(--ink-3)}
+
+/* سربرگ */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-inline:-16px;padding:12px 16px 0;border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;flex-direction:column;gap:10px}
+.brandrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-family:var(--f-display);font-size:22px;font-weight:700;letter-spacing:0;display:flex;align-items:center;gap:10px}
+.brand .glyph{display:inline-grid;grid-template-columns:repeat(5,5px);grid-template-rows:repeat(3,5px);gap:2px}
+.brand .glyph i{background:var(--ink-3);border-radius:1px}
+.brand .glyph i:nth-child(1),.brand .glyph i:nth-child(6){background:var(--r-d)}
+.brand .glyph i:nth-child(3),.brand .glyph i:nth-child(8){background:var(--accent)}
+.case{display:flex;align-items:center;gap:8px;min-width:0;color:var(--ink-2)}
+.case b{color:var(--ink);font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:40vw}
+.case .stg{font-size:12px;border:1px solid var(--line);border-radius:20px;padding:0 9px;background:var(--surface)}
+.files{margin-inline-start:auto;display:flex;gap:6px;flex-wrap:wrap}
+.stepper{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.stepper::-webkit-scrollbar{display:none}
+.step{display:flex;align-items:center;gap:8px;background:none;border:0;border-bottom:3px solid transparent;padding:6px 12px 10px;color:var(--ink-2);white-space:nowrap;font-weight:500}
+.step .sn{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--ink-3);font-size:12px;font-weight:700}
+.step.on{color:var(--ink);border-bottom-color:var(--accent)}
+.step.on .sn{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.step:hover{color:var(--ink)}
+
+/* عمومی */
+.btn{background:var(--ink);color:var(--bg);border:0;border-radius:8px;padding:8px 16px;font-weight:700;display:inline-flex;align-items:center;gap:6px}
+.btn.accent{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.sm{padding:5px 11px;font-size:13px;font-weight:500}
+.btn.danger{background:var(--crit);color:#fff;border-color:var(--crit)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.link{background:none;border:0;color:var(--accent);padding:0 4px;font-weight:500;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.link.danger{color:var(--crit)}
+.pane{padding-top:22px;display:flex;flex-direction:column;gap:18px}
+.pane-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.pane-head h1{font-family:var(--f-display);font-size:26px;font-weight:700}
+.pane-head p{margin:4px 0 0;color:var(--ink-2);max-width:68ch}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;min-width:0}
+.card h3{font-size:16px;font-weight:800;margin-bottom:4px}
+.card .sub{color:var(--ink-2);margin:0 0 14px;font-size:13.5px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field span{font-size:13px;color:var(--ink-2);font-weight:500}
+.field small{color:var(--ink-3);font-weight:400}
+input:not([type=checkbox]),textarea,select{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 11px;line-height:1.7}
+textarea{resize:vertical;min-height:44px;overflow:hidden}
+input:focus,textarea:focus,select:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px var(--accent-soft)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.lbl{font-size:13px;font-weight:700;color:var(--ink-2);margin-bottom:6px}
+.lbl small{font-weight:400;color:var(--ink-3)}
+.status{font-size:13px;color:var(--ink-2);min-height:1.7em}
+.status.busy{color:var(--info)}
+.status.busy::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:currentColor;margin-inline-end:8px;animation:pulse 1s infinite}
+.status.ok{color:var(--ok)}.status.err{color:var(--crit)}
+@keyframes pulse{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.empty{color:var(--ink-3);padding:10px 0;font-size:13.5px}
+.banner{background:var(--accent-soft);border:1px solid var(--accent);color:var(--ink);border-radius:var(--radius);padding:10px 14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px;font-size:13.5px}
+.banner b{color:var(--accent)}
+.toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translate(-50%,20px);background:var(--ink);color:var(--bg);padding:9px 18px;border-radius:8px;opacity:0;pointer-events:none;transition:.2s;z-index:50;max-width:calc(100% - 32px);font-size:13.5px}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast.warn{background:var(--warn);color:#fff}
+
+/* مرحله ۱ */
+.manual{display:flex;flex-direction:column;gap:8px;margin-top:12px;border-top:1px dashed var(--line);padding-top:12px}
+.msteps{margin:0;padding-inline-start:20px;color:var(--ink-2);font-size:13px}
+#mDraftIn,#mAiIn{font-size:12.5px;direction:ltr;text-align:left;max-height:220px;overflow:auto}
+
+.seggrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.seg{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 10px;text-align:right;display:flex;flex-direction:column;gap:2px}
+.seg b{font-size:13.5px}.seg small{color:var(--ink-3);font-size:11.5px;line-height:1.5}
+.seg.on{border-color:var(--accent);background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--accent)}
+#raw{min-height:180px}
+#requestMsg,#fuMsg{font-size:13.5px;background:var(--surface-2)}
+
+/* بوم */
+.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.miniseg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)}
+.mini{border:0;background:none;padding:5px 12px;font-size:13px}
+.mini.on{background:var(--ink);color:var(--bg)}
+.toolbar select{width:auto;padding:5px 10px;font-size:13px}
+.bmc{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));grid-template-areas:"cs cs cr cr vp vp ka ka kp kp" "cs cs ch ch vp vp kr kr kp kp" "rs rs rs rs rs co co co co co";gap:6px}
+.supp{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px}
+.tile{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--rc);border-radius:8px;padding:8px 10px;text-align:right;display:flex;flex-direction:column;gap:4px;min-height:74px;min-width:0;position:relative}
+.tile:hover{border-color:var(--rc)}
+.tile.on{background:var(--rs);border-color:var(--rc);box-shadow:inset 0 0 0 1px var(--rc)}
+.tile .tno{position:absolute;left:8px;top:6px;font-size:11px;color:var(--ink-3)}
+.tile .ttl{font-weight:700;font-size:13.5px;line-height:1.5;padding-left:16px}
+.tile .tmeta{display:flex;align-items:center;gap:6px;margin-top:auto;flex-wrap:wrap}
+.prog{flex:1;min-width:30px;height:4px;background:var(--surface-2);border-radius:2px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--rc)}
+.frac{font-size:11px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.fdot{font-size:10.5px;background:var(--warn-soft);color:var(--warn);border-radius:10px;padding:0 6px;font-weight:700}
+.sc{display:inline-grid;place-items:center;min-width:24px;height:24px;border-radius:6px;font-weight:800;font-size:13px;background:var(--surface-2);color:var(--ink-3)}
+.sc.s1{background:var(--s1);color:#fff}.sc.s2{background:var(--s2);color:#fff}.sc.s3{background:var(--s3);color:#1b1b1b}.sc.s4{background:var(--s4);color:#fff}.sc.s5{background:var(--s5);color:#fff}
+.r-d{--rc:var(--r-d);--rs:var(--r-d-soft)}.r-f{--rc:var(--r-f);--rs:var(--r-f-soft)}.r-v{--rc:var(--r-v);--rs:var(--r-v-soft)}.r-s{--rc:var(--r-s);--rs:var(--r-s-soft)}
+.regions{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--ink-2);margin-top:8px}
+.regions i{display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--rc);margin-inline-end:5px;vertical-align:-1px}
+
+/* ویرایشگر */
+#editor{display:flex;flex-direction:column;gap:16px;scroll-margin-top:140px}
+.ed-head{border-right:4px solid var(--rc);padding-right:14px}
+.ed-tag{font-size:12px;color:var(--rc);font-weight:700;letter-spacing:.02em}
+.ed-head h2{font-family:var(--f-display);font-size:24px;font-weight:700;margin:2px 0}
+.why{margin:0;color:var(--ink-2);max-width:72ch}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:20px;padding:3px 12px;font-size:13px}
+.chip:hover{border-color:var(--ink-3)}
+.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.qs{display:flex;flex-direction:column;gap:2px}
+.q{padding:12px 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.q .qt{font-weight:700;font-size:14.5px}
+.q .hint{font-size:12.5px;color:var(--ink-3);margin-top:-4px}
+.q.stageq .qt{color:var(--ink)}
+.stbadge{display:inline-block;font-size:11px;font-weight:700;background:var(--info-soft);color:var(--info);border-radius:10px;padding:0 8px;margin-inline-end:8px;vertical-align:2px}
+.q.flagged textarea{border-color:var(--warn)}
+.qfoot{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.flagbtn{background:none;border:1px dashed var(--line);border-radius:6px;font-size:12px;padding:2px 10px;color:var(--ink-3)}
+.flagbtn[aria-pressed="true"]{background:var(--warn-soft);border:1px solid var(--warn);color:var(--warn);font-weight:700}
+.note{flex:1;min-width:200px;font-size:13px;padding:4px 10px!important;border-color:var(--warn)!important;background:var(--warn-soft)!important}
+.sumbox,.scorebox{border-top:1px solid var(--line);padding-top:14px}
+.scores{display:flex;gap:6px}
+.sbtn{width:46px;height:40px;border-radius:8px;border:1px solid var(--line);background:var(--surface);font-weight:800;font-size:16px}
+.sbtn.on.s1{background:var(--s1);border-color:var(--s1);color:#fff}.sbtn.on.s2{background:var(--s2);border-color:var(--s2);color:#fff}.sbtn.on.s3{background:var(--s3);border-color:var(--s3);color:#1b1b1b}.sbtn.on.s4{background:var(--s4);border-color:var(--s4);color:#fff}.sbtn.on.s5{background:var(--s5);border-color:var(--s5);color:#fff}
+.rubric{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px;font-size:12.5px;color:var(--ink-2)}
+.rubric div{background:var(--surface-2);border-radius:6px;padding:6px 10px}
+.rubric b{color:var(--ink);margin-inline-end:4px}
+.evs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ev{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 10px;text-align:right;display:flex;flex-direction:column}
+.ev small{color:var(--ink-3);font-size:11.5px}
+.ev.on{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.expect{margin-top:10px;font-size:12.5px;color:var(--info)}
+.ednav{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:14px}
+
+/* اقتصاد واحد */
+.econ-in{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.econ-in input{font-variant-numeric:tabular-nums}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;border-top:4px solid var(--line)}
+.kpi.ok{border-top-color:var(--ok)}.kpi.warn{border-top-color:var(--warn)}.kpi.crit{border-top-color:var(--crit)}
+.kl{font-size:13px;color:var(--ink-2);font-weight:500}
+.kv{font-size:24px;font-weight:800;font-variant-numeric:tabular-nums;margin:2px 0}
+.kv small{font-size:12px;font-weight:400;color:var(--ink-3);margin-inline-start:6px}
+.kn{font-size:12px;color:var(--ink-3)}
+
+/* پیگیری */
+.fu-item{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start;padding:10px 0;border-top:1px solid var(--line)}
+.fu-item:first-child{border-top:0}
+.btag{font-size:11.5px;font-weight:700;color:var(--rc);background:var(--rs);border-radius:6px;padding:1px 8px;white-space:nowrap}
+.fq{font-weight:500}.fn{font-size:13px;color:var(--warn)}.fn.muted{color:var(--ink-3)}
+.check{display:flex;gap:10px;align-items:flex-start;padding:6px 0;border-top:1px solid var(--line)}
+.check input{margin-top:6px;accent-color:var(--accent)}
+.custom-row{display:flex;gap:8px;align-items:center;margin-bottom:6px}
+
+/* داشبورد */
+.dtop{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+.gauge{position:relative;width:132px;height:132px;flex:none}
+.gauge svg{width:100%;height:100%}
+.g-bg{fill:none;stroke:var(--surface-2);stroke-width:11}
+.g-fg{fill:none;stroke:var(--ink-3);stroke-width:11;stroke-linecap:round}
+.g-fg.ok{stroke:var(--ok)}.g-fg.mid{stroke:var(--s3)}.g-fg.warn{stroke:var(--s2)}.g-fg.crit{stroke:var(--crit)}
+.gv{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.gv b{font-size:34px;font-weight:800;line-height:1}.gv span{font-size:12px;color:var(--ink-3)}
+.dstats{flex:1;min-width:240px;display:flex;flex-direction:column;gap:6px}
+.dlabel{font-size:13px;color:var(--ink-2)}
+.dbig{font-family:var(--f-display);font-size:28px;font-weight:700;line-height:1.3}
+.drow{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--ink-2)}
+.drow b{color:var(--ink)}
+.pills{display:flex;gap:6px;flex-wrap:wrap}
+.pill{font-size:12px;font-weight:700;border-radius:20px;padding:1px 10px}
+.pill.crit{background:var(--crit-soft);color:var(--crit)}.pill.warn{background:var(--warn-soft);color:var(--warn)}.pill.info{background:var(--info-soft);color:var(--info)}.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.bars-axis,.bar-row{display:grid;grid-template-columns:130px 1fr 92px;gap:12px;align-items:center}
+.axis{position:relative;height:18px;font-size:11px;color:var(--ink-3)}
+.axis span{position:absolute;transform:translateX(50%);top:0}
+.bar-row{padding:5px 0}
+.bl{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.track{position:relative;height:16px;background:var(--surface-2);border-radius:4px}
+.track .grid{position:absolute;top:0;bottom:0;width:1px;background:var(--line)}
+.fill{position:absolute;right:0;top:0;bottom:0;background:var(--rc);border-radius:4px}
+.exp{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink);transform:translateX(50%)}
+.aimark{position:absolute;top:3px;width:10px;height:10px;border-radius:50%;background:var(--surface);border:2.5px solid var(--ink)}
+.bv{font-weight:800;font-variant-numeric:tabular-nums;display:flex;gap:6px;align-items:baseline}
+.bv small{font-weight:400;font-size:11px;color:var(--ink-3)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--ink-2);margin-top:10px}
+.lg{display:inline-block;width:12px;height:12px;border-radius:2px;background:var(--rc);margin-inline-end:6px;vertical-align:-1px}
+.lg.exp{width:2px;background:var(--ink);position:static;transform:none}
+.lg.aimark{position:static;width:10px;height:10px;border-radius:50%;background:var(--surface);border:2.5px solid var(--ink)}
+.cell{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--rc);border-radius:8px;padding:9px 11px;min-height:96px;min-width:0;font-size:13px}
+.cell .ch{display:flex;justify-content:space-between;align-items:center;gap:6px;font-weight:800;margin-bottom:4px}
+.cell p{margin:2px 0;color:var(--ink-2);overflow-wrap:anywhere}
+.cchips{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.cchips span{font-size:11px;background:var(--rs);color:var(--rc);border-radius:10px;padding:0 7px}
+.warn-item{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+.warn-item:first-child{border-top:0}
+.warn-item .sev{font-size:11.5px;font-weight:800;border-radius:6px;padding:1px 8px;white-space:nowrap;height:fit-content}
+.warn-item.crit .sev{background:var(--crit-soft);color:var(--crit)}.warn-item.warn .sev{background:var(--warn-soft);color:var(--warn)}.warn-item.info .sev{background:var(--info-soft);color:var(--info)}
+.warn-item p{margin:2px 0 4px;color:var(--ink-2);font-size:13.5px}
+.wb{display:flex;gap:4px;flex-wrap:wrap}
+.ai-verdict{background:var(--surface-2);border-radius:8px;padding:12px 14px}
+.ai-verdict p{margin:6px 0 2px;font-size:15px}
+#aiReport h4{font-size:14.5px;margin:18px 0 8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.pt{border-right:3px solid var(--line);padding:2px 12px 2px 0;margin-bottom:10px}
+.pt.ok{border-color:var(--ok)}.pt.crit{border-color:var(--crit)}.pt.warn{border-color:var(--warn)}
+.pt p{margin:2px 0;color:var(--ink-2);font-size:13.5px}
+.risks{display:flex;flex-direction:column;gap:8px}
+.risk{display:grid;grid-template-columns:auto 1fr;gap:10px}
+.risk .sev{font-size:11.5px;font-weight:800;border-radius:6px;padding:1px 8px;height:fit-content;background:var(--info-soft);color:var(--info)}
+.risk.high .sev{background:var(--crit-soft);color:var(--crit)}.risk.medium .sev{background:var(--warn-soft);color:var(--warn)}
+.risk p{margin:0;color:var(--ink-2);font-size:13.5px}
+.actions{margin:0;padding-inline-start:22px;display:flex;flex-direction:column;gap:8px}
+.actions li div{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.actions .hz{font-size:11.5px;background:var(--accent-soft);color:var(--accent);border-radius:10px;padding:0 8px;font-weight:700}
+.actions p{margin:0;color:var(--ink-2);font-size:13.5px}
+.tablewrap{overflow-x:auto}
+.cmp{border-collapse:collapse;width:100%;font-size:13px}
+.cmp th,.cmp td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;vertical-align:top}
+.cmp th{color:var(--ink-2);font-weight:700}
+.cmp .num{font-weight:800;font-variant-numeric:tabular-nums;text-align:center;width:72px}
+.cmp tr.gap td{background:var(--warn-soft)}
+.exports{display:flex;gap:10px;flex-wrap:wrap}
+
+@media (max-width:860px){
+  .grid2,.two{grid-template-columns:1fr}
+  .econ-in{grid-template-columns:1fr 1fr}
+  .kpis{grid-template-columns:1fr 1fr}
+  .seggrid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  .bmc{grid-template-columns:1fr 1fr;grid-template-areas:none}
+  .bmc>*{grid-area:auto!important}
+  .rubric,.evs{grid-template-columns:1fr}
+  .bars-axis,.bar-row{grid-template-columns:96px 1fr 64px;gap:8px}
+  .fields{grid-template-columns:1fr}
+  .files .btn{padding:4px 9px}
+  .case b{max-width:52vw}
+}
+@media (max-width:460px){
+  .kpis,.econ-in{grid-template-columns:1fr}
+  .fu-item{grid-template-columns:1fr}
+}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brandrow">
+      <div class="brand"><span class="glyph" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>بوم کسب‌وکار</div>
+      <div class="case"><b id="caseName"></b><span class="stg" id="caseStage"></span></div>
+      <div class="files">
+        <button class="btn ghost sm" id="newCase">پروندهٔ جدید</button>
+        <button class="btn ghost sm" id="openJson">باز کردن پرونده</button>
+        <button class="btn ghost sm dl-only" id="saveJson">ذخیرهٔ پرونده</button>
+        <input type="file" id="fileIn" accept=".json,application/json" hidden>
+      </div>
+    </div>
+    <nav class="stepper" id="stepper" aria-label="مراحل"></nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="banner" id="sampleBanner" hidden><b>پروندهٔ نمونه</b><span>«سبزینه‌باکس» یک کسب‌وکار فرضی است تا ابزار را پر شده ببینید. با اولین ویرایش، این پرونده مال شما می‌شود؛ برای شروع از صفر «پروندهٔ جدید» را بزنید.</span></div>
+
+  <!-- ۱ -->
+  <section class="pane" id="pane-intake" hidden>
+    <div class="pane-head"><div><h1>دریافت اطلاعات</h1><p>مشخصات پرونده را ثبت کنید، هر چه از بنیان‌گذار گرفته‌اید در یادداشت‌ها بریزید و اگر اطلاعات کم است، پیام درخواست را برایش بفرستید.</p></div></div>
+    <div class="grid2">
+      <div class="card">
+        <h3>مشخصات پرونده</h3>
+        <div class="fields">
+          <label class="field"><span>نام کسب‌وکار</span><input id="m-name" data-meta="name"></label>
+          <label class="field"><span>بنیان‌گذار</span><input id="m-founder" data-meta="founder"></label>
+          <label class="field"><span>صنعت</span><input id="m-industry" data-meta="industry"></label>
+          <label class="field"><span>منبع اطلاعات</span><input id="m-source" data-meta="source" placeholder="جلسهٔ حضوری، پیچ‌دک، فرم…"></label>
+          <label class="field"><span>تحلیل‌گر</span><input id="m-analyst" data-meta="analyst"></label>
+          <label class="field"><span>تاریخ</span><input id="m-date" data-meta="date"></label>
+        </div>
+        <div class="lbl" style="margin-top:16px">مرحلهٔ کسب‌وکار <small>سؤال‌های مرحله‌ای و انتظار نمره با این تغییر می‌کنند</small></div>
+        <div class="seggrid" id="stageSeg"></div>
+      </div>
+      <div class="card">
+        <h3>یادداشت‌های خام بنیان‌گذار</h3>
+        <p class="sub">متن جلسه، پیام‌ها یا متن پیچ‌دک را اینجا بچسبانید.</p>
+        <textarea id="raw" placeholder="هر چه از بنیان‌گذار شنیده یا گرفته‌اید…"></textarea>
+        <div class="row ai-only" style="margin-top:10px">
+          <button class="btn accent" id="draftBtn">پیش‌نویس بوم با هوش مصنوعی</button>
+          <button class="btn ghost sm" id="draftStop" hidden>توقف</button>
+        </div>
+        <div class="status ai-only" id="draftStatus">فقط فیلدهای خالی پر می‌شوند و ابهام‌ها خودکار علامت می‌خورند.</div>
+        <div class="manual ai-off" hidden>
+          <div class="lbl">پیش‌نویس با هوش مصنوعی (روش دستی)</div>
+          <ol class="msteps"><li>پرامپت را کپی کنید و در یک گفتگوی Claude بچسبانید.</li><li>کل پاسخ Claude را در کادر زیر بچسبانید و «اعمال» را بزنید.</li></ol>
+          <div class="row"><button class="btn accent sm" id="mDraftCopy">کپی پرامپت</button></div>
+          <textarea id="mDraftIn" rows="2" placeholder="پاسخ Claude را اینجا بچسبانید…"></textarea>
+          <div class="row"><button class="btn sm" id="mDraftApply">اعمال پاسخ</button></div>
+          <div class="status" id="mDraftStatus">فقط فیلدهای خالی پر می‌شوند و ابهام‌ها خودکار علامت می‌خورند.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="row" style="justify-content:space-between"><div><h3>پیام درخواست اطلاعات برای بنیان‌گذار</h3><p class="sub">بر اساس مرحلهٔ انتخاب‌شده ساخته می‌شود؛ قبل از ارسال ویرایشش کنید.</p></div><button class="btn sm" id="copyReq">کپی پیام</button></div>
+      <textarea id="requestMsg"></textarea>
+    </div>
+    <div class="row" style="justify-content:space-between">
+      <button class="link" id="loadSample">نمایش پروندهٔ نمونه</button>
+      <button class="btn" data-step="canvas">ادامه: تکمیل بوم ←</button>
+    </div>
+  </section>
+
+  <!-- ۲ -->
+  <section class="pane" id="pane-canvas" hidden>
+    <div class="pane-head">
+      <div><h1>تکمیل بوم</h1><p>روی هر خانه بزنید، پاسخ‌ها را بنویسید، موارد مبهم را علامت بزنید و در پایان به بلوک نمره بدهید.</p></div>
+      <div class="toolbar">
+        <div class="miniseg" id="modeSeg"></div>
+        <label class="row" style="gap:6px;font-size:13px;color:var(--ink-2)">مرحله<select id="stageMini" aria-label="مرحله"></select></label>
+      </div>
+    </div>
+    <div>
+      <div id="nav"></div>
+      <div class="regions"><span class="r-d"><i></i>سمت مشتری</span><span class="r-f"><i></i>زیرساخت</span><span class="r-v"><i></i>مالی</span><span class="r-s"><i></i>بلوک‌های مکمل</span></div>
+    </div>
+    <div class="card" id="editor"></div>
+  </section>
+
+  <!-- ۳ -->
+  <section class="pane" id="pane-econ" hidden>
+    <div class="pane-head"><div><h1>اقتصاد واحد</h1><p>اعداد پایه را به تومان و بر مبنای ماهانه وارد کنید. شاخص‌ها و هشدارها خودکار حساب می‌شوند؛ اعداد تقریبی هم کافی است.</p></div></div>
+    <div class="card"><div class="econ-in" id="econInputs"></div></div>
+    <div class="kpis" id="econOut"></div>
+    <div class="row" style="justify-content:space-between"><button class="btn ghost" data-step="canvas">→ تکمیل بوم</button><button class="btn" data-step="followup">ادامه: پیگیری ابهام‌ها ←</button></div>
+  </section>
+
+  <!-- ۴ -->
+  <section class="pane" id="pane-followup" hidden>
+    <div class="pane-head"><div><h1>پیگیری ابهام‌ها</h1><p>هر چه علامت ابهام خورده، به‌علاوهٔ سؤال‌های انتخابی، در یک پیام آمادهٔ ارسال برای بنیان‌گذار جمع می‌شود.</p></div></div>
+    <div class="grid2">
+      <div class="card"><h3>ابهام‌های علامت‌خورده</h3><div id="fuFlags"></div></div>
+      <div class="card">
+        <h3>سؤال‌های تکمیلی</h3>
+        <label class="check" style="border:0"><input type="checkbox" id="fuEmpty"><span>سؤال‌های کلیدیِ بی‌پاسخ هم اضافه شوند</span></label>
+        <div class="lbl" style="margin-top:10px">پیشنهاد هوش مصنوعی</div>
+        <div id="fuAI"></div>
+        <div class="lbl" style="margin-top:14px">سؤال دلخواه</div>
+        <div id="fuCustom"></div>
+        <button class="btn ghost sm" id="addCustom">افزودن سؤال</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="row" style="justify-content:space-between"><div><h3>پیام پیگیری</h3><p class="sub">پیش از ارسال ویرایشش کنید؛ با هر تغییر بالا دوباره ساخته می‌شود.</p></div><button class="btn sm" id="copyFu">کپی پیام</button></div>
+      <textarea id="fuMsg"></textarea>
+    </div>
+    <div class="row" style="justify-content:flex-end"><button class="btn" data-step="dash">ادامه: داشبورد و تحلیل ←</button></div>
+  </section>
+
+  <!-- ۵ -->
+  <section class="pane" id="pane-dash" hidden>
+    <div class="pane-head"><div><h1>داشبورد و تحلیل</h1><p>سلامت مدل بر اساس نمرهٔ وزنی ۹ بلوک اصلی؛ ارزش پیشنهادی و مشتری بیشترین وزن را دارند.</p></div></div>
+    <div class="card dtop" id="dashTop"></div>
+    <div class="card"><h3>نمرهٔ بلوک‌ها در برابر انتظار مرحله</h3><p class="sub">خط عمودی تیره انتظار مرحلهٔ فعلی است.</p><div id="bars"></div></div>
+    <div class="card"><h3>نمای بوم</h3><p class="sub">برای هر خانه «خلاصه» نمایش داده می‌شود؛ اگر خلاصه نداشته باشد، اولین پاسخ‌ها.</p><div id="canvasView"></div></div>
+    <div class="card"><h3>هشدارها و ناسازگاری‌ها</h3><p class="sub">قواعد خودکار: تطابق بلوک‌ها با هم، با مرحله و با اقتصاد واحد.</p><div id="warnList"></div></div>
+    <div class="card">
+      <div class="row" style="justify-content:space-between;align-items:flex-start">
+        <div><h3>تحلیل هوش مصنوعی</h3><p class="sub">جمع‌بندی، نقاط قوت و ضعف، ناسازگاری‌ها، ریسک‌ها، اقدامات و نمرهٔ پیشنهادی برای مقایسه با نمرهٔ شما.</p></div>
+        <div class="row ai-only"><button class="btn accent" id="aiBtn">اجرای تحلیل</button><button class="btn ghost sm" id="aiStop" hidden>توقف</button></div>
+      </div>
+      <div class="status ai-only" id="aiStatus"></div>
+      <div class="manual ai-off" hidden>
+        <ol class="msteps"><li>پرامپت تحلیل را کپی کنید و در یک گفتگوی Claude بچسبانید.</li><li>کل پاسخ را در کادر زیر بچسبانید و «اعمال» را بزنید.</li></ol>
+        <div class="row"><button class="btn accent sm" id="mAiCopy">کپی پرامپت تحلیل</button></div>
+        <textarea id="mAiIn" rows="2" placeholder="پاسخ Claude را اینجا بچسبانید…"></textarea>
+        <div class="row"><button class="btn sm" id="mAiApply">اعمال پاسخ</button></div>
+        <div class="status" id="mAiStatus"></div>
+      </div>
+      <div id="aiReport"></div>
+    </div>
+    <div class="card">
+      <h3>خروجی</h3>
+      <p class="sub">گزارش HTML را در مرورگر باز کنید و با «چاپ» به PDF تبدیلش کنید. فایل پرونده را بعداً با «باز کردن پرونده» ادامه دهید.</p>
+      <div class="exports">
+        <button class="btn dl-only" id="xlsxBtn">خروجی اکسل</button>
+        <button class="btn dl-only" id="reportBtn">گزارش قابل‌چاپ</button>
+        <button class="btn ghost dl-only" id="saveJson2">ذخیرهٔ پرونده</button>
+      </div>
+      <div class="status" id="dlNote" hidden>ذخیرهٔ فایل در این نما در دسترس نیست.</div>
+    </div>
+  </section>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ===== بانک سؤالات و منطق تحلیلی بوم کسب‌وکار ===== */
+const STAGES = [
+  { id: 'idea', label: 'ایده', desc: 'هنوز محصول یا مشتری واقعی ندارد', exp: 2 },
+  { id: 'mvp', label: 'اعتبارسنجی (MVP)', desc: 'نسخهٔ اول و چند مشتری آزمایشی', exp: 2.5 },
+  { id: 'traction', label: 'کشش بازار', desc: 'فروش تکرارشونده و رشد اولیه', exp: 3.5 },
+  { id: 'growth', label: 'رشد و مقیاس', desc: 'مدل اثبات‌شده، دنبال گسترش', exp: 4 }
+];
+
+const EVIDENCE = [
+  { id: 'assume', label: 'فرض', desc: 'بدون شواهد' },
+  { id: 'early', label: 'شواهد اولیه', desc: 'مصاحبه، آزمایش، پیش‌فروش' },
+  { id: 'data', label: 'دادهٔ معتبر', desc: 'فروش واقعی و عدد' }
+];
+
+/* region: d = خواستنی بودن (سمت مشتری)، f = امکان‌پذیری (زیرساخت)، v = ماندگاری مالی، s = مکمل */
+const BLOCKS = [
+  {
+    id: 'cs', no: 1, title: 'بخش‌بندی مشتریان', region: 'd', weight: 1.5,
+    why: 'همهٔ بلوک‌های دیگر به این سؤال وابسته‌اند: برای چه کسی ارزش می‌سازیم؟ «همه» پاسخ نیست.',
+    chips: [
+      { label: 'نوع مشتری', options: ['B2C (مصرف‌کننده)', 'B2B (کسب‌وکار)', 'B2G (دولتی)', 'B2B2C', 'پلتفرم دوسویه'] },
+      { label: 'الگوی بازار', options: ['بازار انبوه', 'بازار خاص (Niche)', 'بخش‌بندی‌شده', 'متنوع'] }
+    ],
+    q: [
+      ['cs1', 'مشتری اصلی و پیشگام (Early adopter) دقیقاً کیست؟', 'با جزئیات: سن، شغل، محل زندگی؛ یا در B2B اندازه و صنعت شرکت.', 1],
+      ['cs2', 'این مشتری الان مسئله را چطور حل می‌کند و این راه‌حل چقدر برایش هزینه دارد؟', 'جایگزین فعلی، رقیب واقعی شماست؛ حتی اگر «هیچ کاری نکردن» باشد.', 1],
+      ['cs3', 'خریدار، کاربر و تصمیم‌گیرنده یک نفرند یا افراد متفاوت؟', 'در فروش سازمانی معمولاً متفاوت‌اند و هر کدام ارزش جداگانه می‌خواهند.', 0],
+      ['cs4', 'بازار را بر چه مبنایی بخش‌بندی کرده‌اید و چرا این بخش را اول انتخاب کردید؟', 'مبنا: نیاز، رفتار، توان پرداخت، جغرافیا، کانال.', 1],
+      ['cs5', 'اندازهٔ این بخش چقدر است؟ چند مشتری بالقوه با توان پرداخت وجود دارد؟', 'برآورد از پایین به بالا (تعداد × مبلغ) قابل‌اتکاتر از درصدی از کل بازار است.', 0],
+      ['cs6', 'کدام مشتری را عمداً هدف نمی‌گیرید؟', 'نشانهٔ تمرکز است.', 0],
+      ['cs7', 'با چند مشتری واقعی صحبت کرده‌اید و مهم‌ترین چیزی که شنیدید چه بود؟', 'تعداد مصاحبه و نقل‌قول مستقیم شواهد است، برداشت بنیان‌گذار نه.', 1]
+    ],
+    st: {
+      idea: 'فرضیهٔ اصلی دربارهٔ مشتری چیست و چطور و تا کی آزمایشش می‌کنید؟',
+      mvp: 'چند درصد از کاربران اولیه همان مشتری هدفی هستند که تعریف کرده بودید؟',
+      traction: 'سودآورترین بخش مشتریان کدام است و درآمد بین بخش‌ها چطور تقسیم شده؟',
+      growth: 'بخش بعدی بازار برای گسترش کدام است و چه تفاوتی با بخش فعلی دارد؟'
+    },
+    rubric: { 1: 'تعریف مبهم یا «همه مردم»', 3: 'پرسونای مشخص و چند مصاحبهٔ واقعی', 5: 'بخش مشخص با دادهٔ خرید واقعی و اندازهٔ بازار سنجیده' }
+  },
+  {
+    id: 'vp', no: 2, title: 'ارزش پیشنهادی', region: 'd', weight: 1.5,
+    why: 'دلیل اینکه مشتری شما را به جایگزین‌ها ترجیح می‌دهد. باید از زبان مسئلهٔ مشتری نوشته شود، نه فهرست ویژگی‌ها.',
+    chips: [
+      { label: 'نوع ارزش', options: ['تازگی/نوآوری', 'عملکرد یا کیفیت بهتر', 'شخصی‌سازی', 'انجام کار به‌جای مشتری', 'طراحی', 'برند و پرستیژ', 'قیمت پایین‌تر', 'کاهش هزینهٔ مشتری', 'کاهش ریسک', 'دسترسی‌پذیری', 'راحتی و سهولت'] }
+    ],
+    q: [
+      ['vp1', 'ارزش را در یک جمله بگویید.', 'قالب: برای [مشتری] که [مسئله] دارد، ما [راه‌حل] ارائه می‌دهیم که برخلاف [جایگزین]، [مزیت کلیدی] دارد.', 1],
+      ['vp2', 'کدام «کار» (Job-to-be-done) مشتری را انجام می‌دهید؟ کارکردی، احساسی یا اجتماعی؟', '', 0],
+      ['vp3', 'بزرگ‌ترین دردی که برطرف می‌کنید چیست؟ چقدر شدید و پرتکرار است؟', 'دردِ شدید و پرتکرار یعنی تمایل به پرداخت بالاتر.', 1],
+      ['vp4', 'چه منفعت یا لذتی اضافه می‌کنید که مشتری انتظارش را ندارد؟', '', 0],
+      ['vp5', 'در مقایسه با جایگزین‌ها دقیقاً چه چیزی بهتر، ارزان‌تر یا سریع‌تر است؟', 'با عدد: «۳۰٪ ارزان‌تر»، «تحویل در ۲ ساعت».', 1],
+      ['vp6', 'چرا مشتری باید همین الان بخرد، نه بعداً؟', 'فوریت یا هزینهٔ صبر کردن.', 0],
+      ['vp7', 'کدام بخش از ارزش پیشنهادی را رقیب به‌سختی می‌تواند کپی کند؟', '', 0],
+      ['vp8', 'محصول الان در چه وضعیتی است؟', 'ایده، نمونهٔ اولیه، نسخهٔ قابل‌فروش، نسخهٔ پایدار.', 0]
+    ],
+    st: {
+      idea: 'چه شواهدی دارید که این مسئله واقعاً وجود دارد و مشتری برای حلش پول خرج می‌کند؟',
+      mvp: 'کمینه‌محصول (MVP) چیست، کدام فرضیهٔ ارزش را آزمود و نتیجه چه بود؟',
+      traction: 'مشتریان راضی ارزش محصول را با چه کلماتی توصیف می‌کنند؟ رضایت یا NPS چقدر است؟',
+      growth: 'چه ارزش‌های جدیدی برای حفظ برتری در حال توسعه است؟'
+    },
+    rubric: { 1: 'فهرست ویژگی‌ها، بدون مسئلهٔ روشن', 3: 'مسئلهٔ تأییدشده با مصاحبه و تمایز روشن', 5: 'مشتری پول می‌دهد، برمی‌گردد و ارزش را با زبان خودش بیان می‌کند' }
+  },
+  {
+    id: 'ch', no: 3, title: 'کانال‌ها', region: 'd', weight: 1,
+    why: 'مسیر مشتری از آشنایی تا خرید، تحویل و پس از فروش. هر مرحله یک نقطهٔ ریزش است.',
+    chips: [
+      { label: 'کانال‌ها', options: ['سایت/فروشگاه اینترنتی', 'اینستاگرام', 'پیام‌رسان (بله، ایتا، تلگرام)', 'مارکت‌پلیس (دیجی‌کالا، باسلام، دیوار)', 'تیم فروش حضوری', 'فروشگاه فیزیکی', 'نماینده/عامل فروش', 'تبلیغات آنلاین', 'سئو و محتوا', 'ارجاع و دهان‌به‌دهان', 'رویداد و نمایشگاه', 'تماس تلفنی'] },
+      { label: 'مالکیت کانال', options: ['کانال مستقیم خودمان', 'کانال شریک'] }
+    ],
+    q: [
+      ['ch1', 'مشتری الان کجا دنبال راه‌حل می‌گردد و شما در آن مسیر کجا حاضرید؟', '', 1],
+      ['ch2', 'آگاهی: مشتری اولین بار از کجا با شما آشنا می‌شود؟', '', 1],
+      ['ch3', 'ارزیابی: مشتری چطور ارزش محصول را پیش از خرید می‌سنجد؟', 'نمونهٔ رایگان، دمو، نظر مشتریان قبلی، ضمانت بازگشت پول.', 0],
+      ['ch4', 'خرید: فرایند خرید و پرداخت چند مرحله است و بیشترین ریزش کجاست؟', '', 0],
+      ['ch5', 'تحویل: محصول چطور، در چه زمانی و با چه هزینه‌ای به مشتری می‌رسد؟', '', 1],
+      ['ch6', 'پس از فروش: پشتیبانی، گارانتی و مرجوعی چطور انجام می‌شود؟', '', 0],
+      ['ch7', 'کانال‌ها مال خودتان است یا شرکا؟ وابستگی به یک پلتفرم چه ریسکی دارد؟', 'مثلاً فیلتر شدن، تغییر الگوریتم یا افزایش کارمزد مارکت‌پلیس.', 0],
+      ['ch8', 'کدام کانال کم‌هزینه‌ترین و کدام پربازده‌ترین است؟', 'هزینهٔ جذب هر مشتری به تفکیک کانال.', 1]
+    ],
+    st: {
+      idea: 'کدام کانال را اول آزمایش می‌کنید، با چه بودجه‌ای و معیار موفقیتش چیست؟',
+      mvp: 'نرخ تبدیل اولیه در هر کانال چقدر بوده است؟',
+      traction: 'کدام کانال تکرارپذیر شده و سقف ظرفیتش کجاست؟',
+      growth: 'کانال‌های مقیاس‌پذیر بعدی کدام‌اند و اقتصاد واحدشان چطور است؟'
+    },
+    rubric: { 1: 'نام یک کانال بدون آزمون', 3: 'یک کانال آزموده با نرخ تبدیل معلوم', 5: 'چند کانال تکرارپذیر با هزینهٔ جذب سنجیده' }
+  },
+  {
+    id: 'cr', no: 4, title: 'رابطه با مشتری', region: 'd', weight: 0.75,
+    why: 'چارچوب تعامل: چطور مشتری را جذب، حفظ و به خرید بیشتر ترغیب می‌کنید و این رابطه چقدر هزینه دارد.',
+    chips: [
+      { label: 'نوع رابطه', options: ['خدمات شخصی', 'مشاور اختصاصی', 'سلف‌سرویس', 'خدمات خودکار', 'جامعهٔ کاربری', 'هم‌آفرینی', 'باشگاه مشتریان'] }
+    ],
+    q: [
+      ['cr1', 'مشتری چه نوع رابطه‌ای انتظار دارد و شما چه نوعی ارائه می‌کنید؟', '', 1],
+      ['cr2', 'اولویت الان جذب مشتری جدید است، حفظ مشتری فعلی یا فروش بیشتر به او؟ چرا؟', '', 1],
+      ['cr3', 'مشتری بعد از اولین خرید چه تجربه‌ای دارد؟', 'آشناسازی (Onboarding) و لحظهٔ «آها».', 0],
+      ['cr4', 'چند درصد مشتریان دوباره می‌خرند یا تمدید می‌کنند؟ بقیه چرا می‌روند؟', '', 1],
+      ['cr5', 'روش و زمان پاسخ‌گویی به مشتری چیست و چه کسی پاسخ می‌دهد؟', 'تلفن، چت، تیکت؛ متوسط زمان پاسخ.', 0],
+      ['cr6', 'بازخورد مشتری چطور جمع‌آوری و به تغییر محصول تبدیل می‌شود؟', '', 0],
+      ['cr7', 'چه چیزی ترک شما را برای مشتری سخت می‌کند؟', 'عادت، دادهٔ ذخیره‌شده، جامعه، امتیاز وفاداری.', 0],
+      ['cr8', 'نگهداشت هر مشتری (پشتیبانی، تخفیف) چقدر هزینه دارد؟', '', 0]
+    ],
+    st: {
+      idea: 'برای اولین مشتریان چه رابطهٔ نزدیکی برنامه‌ریزی کرده‌اید؟',
+      mvp: 'از مشتریان اولیه چه بازخوردی گرفتید و بر اساس آن چه چیزی را تغییر دادید؟',
+      traction: 'نرخ ریزش ماهانه چقدر است و سه دلیل اصلی ریزش کدام‌اند؟',
+      growth: 'چطور رابطه را بدون افزایش هم‌پای هزینه مقیاس می‌دهید؟ (خودکارسازی، جامعه)'
+    },
+    rubric: { 1: 'رابطه تعریف نشده', 3: 'فرایند پشتیبانی روشن و بازخورد منظم', 5: 'نرخ بازگشت سنجیده و سازوکار وفاداری فعال' }
+  },
+  {
+    id: 'rs', no: 5, title: 'جریان درآمد', region: 'v', weight: 1.25,
+    why: 'مدل درآمد: مشتری بابت چه چیزی، چقدر، چند بار و چطور پول می‌دهد.',
+    chips: [
+      { label: 'مدل درآمد', options: ['فروش کالا', 'اشتراک', 'کارمزد/کمیسیون', 'تبلیغات', 'اجاره', 'لایسنس', 'فریمیوم', 'خدمات پروژه‌ای'] },
+      { label: 'قیمت‌گذاری', options: ['قیمت ثابت', 'پلکانی/حجمی', 'پویا', 'مذاکره‌ای', 'وابسته به ویژگی'] }
+    ],
+    q: [
+      ['rs1', 'مشتری دقیقاً بابت چه چیزی پول می‌دهد و امروز برای جایگزین چقدر می‌پردازد؟', '', 1],
+      ['rs2', 'مدل درآمد چیست و چرا این مدل انتخاب شده؟', '', 1],
+      ['rs3', 'قیمت را چطور تعیین کرده‌اید؟ بر پایهٔ هزینه، رقبا یا ارزش برای مشتری؟', '', 1],
+      ['rs4', 'میانگین مبلغ هر خرید و تعداد خرید هر مشتری در یک بازهٔ مشخص چقدر است؟', 'این اعداد را در مرحلهٔ «اقتصاد واحد» هم وارد کنید.', 1],
+      ['rs5', 'سهم هر جریان درآمد از کل چقدر است؟ به یک مشتری یا محصول وابسته‌اید؟', '', 0],
+      ['rs6', 'پول چطور و چه زمانی دریافت می‌شود؟', 'نقد، اقساط، چک، پیش‌پرداخت؛ و اثرش بر نقدینگی.', 0],
+      ['rs7', 'حاشیهٔ سود ناخالص هر واحد فروش چند درصد است؟', '', 0],
+      ['rs8', 'آیا مشتری حاضر است بیشتر بپردازد؟ آزمایش قیمت انجام داده‌اید؟', '', 0]
+    ],
+    st: {
+      idea: 'آیا کسی تا الان پیش‌خرید کرده یا تعهد پرداخت داده است؟',
+      mvp: 'اولین درآمد کی و از چه کسی بود؟ چند مشتری پول داده‌اند؟',
+      traction: 'درآمد ماهانه و نرخ رشد ماه‌به‌ماه چقدر است؟',
+      growth: 'جریان‌های درآمد جدید کدام‌اند و چه اثری بر حاشیهٔ سود دارند؟'
+    },
+    rubric: { 1: '«بعداً درآمد خواهیم داشت»', 3: 'قیمت آزموده و اولین درآمد واقعی', 5: 'درآمد تکرارشونده با حاشیهٔ سود سالم' }
+  },
+  {
+    id: 'kr', no: 6, title: 'منابع کلیدی', region: 'f', weight: 0.75,
+    why: 'دارایی‌هایی که بدون آن‌ها ارزش پیشنهادی ساخته یا تحویل نمی‌شود.',
+    chips: [
+      { label: 'نوع منابع', options: ['فیزیکی', 'فکری (برند، داده، فناوری)', 'انسانی', 'مالی', 'مجوز و قرارداد', 'شبکهٔ ارتباطی'] }
+    ],
+    q: [
+      ['kr1', 'سه منبعی که بدون آن‌ها کسب‌وکار متوقف می‌شود کدام‌اند؟', '', 1],
+      ['kr2', 'منابع انسانی: چه تخصص‌هایی در تیم هست و کدام کمبود دارد؟', '', 1],
+      ['kr3', 'منابع فکری: برند، داده، فناوری، دانش فنی، مجوز یا ثبت اختراع دارید؟', '', 0],
+      ['kr4', 'منابع فیزیکی: انبار، تجهیزات، زیرساخت؛ ظرفیت فعلی‌شان چقدر است؟', '', 0],
+      ['kr5', 'منابع مالی: سرمایهٔ موجود از کجا آمده و چند ماه کفاف می‌دهد؟', '', 1],
+      ['kr6', 'کدام منبع کمیاب یا گران است و برای حفظش چه برنامه‌ای دارید؟', '', 0],
+      ['kr7', 'کدام منابع را برون‌سپاری کرده‌اید و آیا برگرداندنش به داخل به‌صرفه است؟', '', 0]
+    ],
+    st: {
+      idea: 'برای ساخت نسخهٔ اول دقیقاً به چه منابعی نیاز دارید و کدام را الان دارید؟',
+      mvp: 'کدام منبع در ساخت MVP کم آمد یا گلوگاه شد؟',
+      traction: 'برای دو برابر کردن فروش، گلوگاه منابع کجاست؟',
+      growth: 'کدام منبع به مزیت رقابتی پایدار تبدیل شده است؟'
+    },
+    rubric: { 1: 'منابع نامشخص', 3: 'منابع حیاتی شناسایی و تأمین شده', 5: 'منبع کمیاب و تحت کنترل که مزیت رقابتی می‌سازد' }
+  },
+  {
+    id: 'ka', no: 7, title: 'فعالیت‌های کلیدی', region: 'f', weight: 0.75,
+    why: 'کارهایی که باید عالی انجام شوند تا ارزش ساخته، فروخته و تحویل شود.',
+    chips: [
+      { label: 'نوع فعالیت', options: ['تولید', 'حل مسئله/خدمات', 'پلتفرم/شبکه', 'تأمین و لجستیک', 'بازاریابی و فروش', 'توسعهٔ فناوری'] }
+    ],
+    q: [
+      ['ka1', 'سه فعالیتی که ارزش پیشنهادی را تحویل می‌دهند کدام‌اند؟', '', 1],
+      ['ka2', 'برای تولید یا تأمین محصول چه فعالیت‌هایی انجام می‌دهید؟', '', 0],
+      ['ka3', 'برای شناسایی و جذب مشتری چه فعالیت‌هایی انجام می‌دهید؟', '', 0],
+      ['ka4', 'برای تحویل محصول و حفظ تعامل با مشتری چه فعالیت‌هایی انجام می‌دهید؟', '', 0],
+      ['ka5', 'کدام فعالیت را از همه بهتر انجام می‌دهید و کدام را ضعیف؟', '', 1],
+      ['ka6', 'کدام فعالیت‌ها مستند و فرایندمحورند و کدام به یک فرد خاص وابسته‌اند؟', 'وابستگی به یک نفر ریسک توقف است.', 1],
+      ['ka7', 'برون‌سپاری کدام فعالیت به نفع شماست و چرا؟', '', 0]
+    ],
+    st: {
+      idea: 'مهم‌ترین فعالیت ۹۰ روز آینده برای آزمودن فرضیه‌ها چیست؟',
+      mvp: 'چرخهٔ ساخت، سنجش و یادگیری چقدر طول می‌کشد؟',
+      traction: 'کدام فعالیت گلوگاه رشد است؟',
+      growth: 'کدام فعالیت‌ها باید خودکار یا استاندارد شوند؟'
+    },
+    rubric: { 1: 'فهرست کارهای روزمره', 3: 'فعالیت‌های حیاتی شناسایی و اولویت‌بندی شده', 5: 'فرایندهای مستند و تکرارپذیر، مستقل از افراد' }
+  },
+  {
+    id: 'kp', no: 8, title: 'شرکای کلیدی', region: 'f', weight: 0.5,
+    why: 'تأمین‌کنندگان و همکارانی که منابع یا فعالیت‌های کلیدی را ارزان‌تر، بهتر یا کم‌ریسک‌تر فراهم می‌کنند.',
+    chips: [
+      { label: 'نوع شراکت', options: ['تأمین‌کننده', 'اتحاد با غیررقبا', 'همکاری با رقبا', 'سرمایه‌گذاری مشترک', 'شریک توزیع و فروش', 'شریک فناوری', 'نهاد حاکمیتی/مجوزدهنده'] },
+      { label: 'انگیزهٔ شراکت', options: ['صرفه به مقیاس', 'کاهش ریسک', 'دسترسی به منابع یا فعالیت'] }
+    ],
+    q: [
+      ['kp1', 'تأمین‌کنندگان کلیدی کیستند و برای هر کدام چند جایگزین دارید؟', '', 1],
+      ['kp2', 'کدام منابع کلیدی را از شرکا می‌گیرید؟', '', 0],
+      ['kp3', 'کدام فعالیت‌های کلیدی را شرکا انجام می‌دهند؟', '', 0],
+      ['kp4', 'کدام شریک کار را بهتر یا ارزان‌تر از شما انجام می‌دهد؟', '', 0],
+      ['kp5', 'قدرت چانه‌زنی دست کیست؟ قرارداد مکتوب دارید؟', '', 1],
+      ['kp6', 'اگر مهم‌ترین شریک فردا همکاری را قطع کند چه می‌شود؟', '', 1]
+    ],
+    st: {
+      idea: 'برای شروع به کدام شریک حیاتی نیاز دارید و آیا با او صحبت کرده‌اید؟',
+      mvp: 'کدام شریک در ساخت یا عرضهٔ نسخهٔ اول همراه شد و تجربه چطور بود؟',
+      traction: 'کدام شراکت می‌تواند کانال یا هزینه را متحول کند؟',
+      growth: 'چه شراکت‌های استراتژیکی برای ورود به بازار جدید لازم است؟'
+    },
+    rubric: { 1: 'شریکی شناسایی نشده', 3: 'شرکای اصلی با جایگزین مشخص', 5: 'شراکت‌های مکتوب که هزینه یا ریسک را کم کرده‌اند' }
+  },
+  {
+    id: 'co', no: 9, title: 'ساختار هزینه', region: 'v', weight: 1,
+    why: 'مهم‌ترین هزینه‌های اجرای مدل، تفکیک ثابت و متغیر، و فاصله تا نقطهٔ سربه‌سر.',
+    chips: [
+      { label: 'منطق هزینه', options: ['هزینه‌محور', 'ارزش‌محور'] },
+      { label: 'ویژگی‌ها', options: ['صرفه به مقیاس', 'صرفه به تنوع', 'وابسته به نرخ ارز', 'هزینهٔ ثابت سنگین'] }
+    ],
+    q: [
+      ['co1', 'سه قلم بزرگ هزینه کدام‌اند و هر کدام چه سهمی دارند؟', '', 1],
+      ['co2', 'هزینه‌های ثابت ماهانه چقدر است؟', 'حقوق، اجاره، نرم‌افزار، اقساط.', 1],
+      ['co3', 'هزینهٔ متغیر هر واحد فروش چقدر است؟', 'بهای کالا، ارسال، بسته‌بندی، کارمزد درگاه یا مارکت‌پلیس.', 1],
+      ['co4', 'گران‌ترین منبع و گران‌ترین فعالیت کلیدی کدام است؟', '', 0],
+      ['co5', 'هزینهٔ جذب هر مشتری (CAC) چقدر است و چطور محاسبه شده؟', '', 0],
+      ['co6', 'ماهانه چقدر نقدینگی مصرف می‌شود و موجودی تا کی کفاف می‌دهد؟', '', 1],
+      ['co7', 'کدام هزینه‌ها به نرخ ارز یا تورم وابسته‌اند و قیمت فروش چطور با آن هماهنگ می‌شود؟', '', 0],
+      ['co8', 'نقطهٔ سربه‌سر کجاست؟ چند فروش در ماه؟', '', 0]
+    ],
+    st: {
+      idea: 'هزینهٔ ساخت نسخهٔ اول و رسیدن به اولین مشتری چقدر برآورد شده است؟',
+      mvp: 'هزینهٔ واقعی MVP در مقایسه با برآورد اولیه چقدر بود؟',
+      traction: 'کدام هزینه با رشد فروش سریع‌تر از درآمد رشد می‌کند؟',
+      growth: 'کجا صرفه به مقیاس یا کاهش هزینه ممکن است؟'
+    },
+    rubric: { 1: 'هزینه‌ها برآورد نشده', 3: 'هزینهٔ ثابت و متغیر تفکیک شده', 5: 'اقتصاد واحد مثبت و نقطهٔ سربه‌سر روشن' }
+  },
+  {
+    id: 'cp', no: 10, title: 'رقابت و مزیت', region: 's', weight: 0, supp: true,
+    why: 'بوم اصلی رقبا را نمی‌بیند. این بلوک مکمل نشان می‌دهد ارزش پیشنهادی در برابر چه کسانی و با چه مزیتی ایستاده.',
+    chips: [
+      { label: 'مزیت رقابتی', options: ['اثر شبکه‌ای', 'دادهٔ اختصاصی', 'برند', 'هزینهٔ پایین‌تر', 'دسترسی انحصاری', 'فناوری', 'دانش و تجربهٔ تیم'] }
+    ],
+    q: [
+      ['cp1', 'سه رقیب مستقیم و سه جایگزین غیرمستقیم کدام‌اند؟', '', 1],
+      ['cp2', 'رقبا در چه چیزی از شما بهترند؟', '', 1],
+      ['cp3', 'مزیت غیرقابل‌کپی شما چیست؟ چیزی که نمی‌شود خرید یا تقلید کرد.', '', 1],
+      ['cp4', 'موانع ورود به این بازار چیست؟', 'مجوز، سرمایه، شبکهٔ توزیع.', 0],
+      ['cp5', 'ریسک‌های قانونی، تحریمی و کلان (ارز، واردات، فیلترینگ) کدام‌اند؟', '', 0]
+    ],
+    st: {},
+    rubric: { 1: 'رقیبی شناسایی نشده یا «رقیب نداریم»', 3: 'رقبا شناسایی و تمایز روشن', 5: 'مزیت پایدار که با گذشت زمان قوی‌تر می‌شود' }
+  },
+  {
+    id: 'tm', no: 11, title: 'تیم و اجرا', region: 's', weight: 0, supp: true,
+    why: 'در مراحل اولیه، توان اجرای تیم از خود مدل مهم‌تر است.',
+    chips: [
+      { label: 'ترکیب تیم', options: ['فنی', 'فروش و بازاریابی', 'عملیات', 'مالی', 'تجربهٔ همین صنعت'] }
+    ],
+    q: [
+      ['tm1', 'بنیان‌گذاران چه کسانی‌اند و چه سابقهٔ مرتبطی با این بازار دارند؟', '', 1],
+      ['tm2', 'نقش‌ها و سهام چطور تقسیم شده؟ تمام‌وقت‌اند؟', '', 1],
+      ['tm3', 'مهم‌ترین مهارتی که تیم ندارد چیست؟', '', 1],
+      ['tm4', 'تا امروز چه چیزی را سریع ساخته و فروخته‌اید؟', 'سابقهٔ اجرا مهم‌تر از برنامه است.', 0],
+      ['tm5', 'شاخص اصلی که تیم دنبال می‌کند چیست و الان چند است؟', 'North Star Metric', 0]
+    ],
+    st: {},
+    rubric: { 1: 'تیم ناقص یا پاره‌وقت بدون سابقهٔ مرتبط', 3: 'تیم مکمل با سابقهٔ اجرای اولیه', 5: 'تیم کامل با تجربهٔ صنعت و سابقهٔ اجرای سریع' }
+  }
+];
+
+const CORE = BLOCKS.filter(b => !b.supp).map(b => b.id);
+const REGION = { d: 'سمت مشتری', f: 'زیرساخت', v: 'مالی', s: 'مکمل' };
+
+const ECON_FIELDS = [
+  { id: 'aov', label: 'میانگین مبلغ هر خرید', unit: 'تومان' },
+  { id: 'margin', label: 'حاشیهٔ سود ناخالص', unit: 'درصد' },
+  { id: 'opm', label: 'تعداد خرید هر مشتری در ماه', unit: 'بار' },
+  { id: 'life', label: 'میانگین عمر مشتری', unit: 'ماه' },
+  { id: 'cac', label: 'هزینهٔ جذب هر مشتری (CAC)', unit: 'تومان' },
+  { id: 'fixed', label: 'هزینهٔ ثابت ماهانه', unit: 'تومان' },
+  { id: 'revenue', label: 'درآمد ماهانهٔ فعلی', unit: 'تومان' },
+  { id: 'cash', label: 'نقدینگی در دسترس', unit: 'تومان' }
+];
+
+/* ===== وضعیت ===== */
+const LS_KEY = 'bmc-pro-draft-v1';
+/* داخل Claude (Artifact) یا لوکال/وب معمولی */
+const IN_CLAUDE = !!(window.claude && window.claude.use);
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const BY_ID = Object.fromEntries(BLOCKS.map(b => [b.id, b]));
+const faNum = (n, d = 0) => (n == null || !isFinite(n)) ? '—' : Number(n).toLocaleString('fa-IR', { maximumFractionDigits: d });
+const todayFa = () => { try { return new Date().toLocaleDateString('fa-IR'); } catch (e) { return ''; } };
+function parseNum(v) {
+  if (v == null) return NaN;
+  const s = String(v).replace(/[۰-۹]/g, d => '۰۱۲۳۴۵۶۷۸۹'.indexOf(d)).replace(/[٠-٩]/g, d => '٠١٢٣٤٥٦٧٨٩'.indexOf(d))
+    .replace(/[٬,\s]/g, '').replace('٫', '.').replace('/', '.');
+  if (s === '') return NaN;
+  return Number(s);
+}
+
+const blankBlock = () => ({ answers: {}, flags: {}, notes: {}, chips: [], summary: '', score: 0, evidence: '' });
+function blankState() {
+  return {
+    v: 1, sample: false,
+    meta: { name: '', founder: '', industry: '', analyst: 'سید یاسین پیام', date: todayFa(), stage: 'idea', source: '' },
+    raw: '', mode: 'key', current: 'cs', step: 'intake',
+    blocks: Object.fromEntries(BLOCKS.map(b => [b.id, blankBlock()])),
+    econ: {}, ai: null,
+    fu: { includeEmpty: false, aiPicked: {}, custom: [] }
+  };
+}
+function normalize(s) {
+  const base = blankState();
+  const out = Object.assign(base, s || {});
+  out.meta = Object.assign(blankState().meta, (s && s.meta) || {});
+  out.fu = Object.assign(blankState().fu, (s && s.fu) || {});
+  out.econ = Object.assign({}, (s && s.econ) || {});
+  for (const b of BLOCKS) out.blocks[b.id] = Object.assign(blankBlock(), (s && s.blocks && s.blocks[b.id]) || {});
+  if (!BY_ID[out.current]) out.current = 'cs';
+  return out;
+}
+
+function sampleState() {
+  const s = blankState();
+  s.sample = true;
+  s.meta = { name: 'سبزینه‌باکس', founder: 'آقای رضایی (نمونه)', industry: 'کشاورزی و خرده‌فروشی آنلاین', analyst: 'سید یاسین پیام', date: todayFa(), stage: 'mvp', source: 'جلسهٔ حضوری و پیام بله' };
+  s.raw = 'جلسهٔ اول: ارسال هفتگی جعبهٔ سبزی و صیفی تازه از ۳ کشاورز اطراف قم به خانه. ۴۰ مشترک آزمایشی از کانال بله محله و اینستاگرام. هر جعبه ۴۸۰ هزار تومان، حاشیه حدود ۲۲٪. ارسال پنجشنبه‌ها با پیک اجاره‌ای. ۲۸ نفر ماه دوم تمدید کردند. هزینهٔ ثابت حدود ۴۵ میلیون در ماه، ۱۵۰ میلیون نقدینگی دارند. بسته‌بندی را یک کارگاه محلی انجام می‌دهد.';
+  const B = s.blocks;
+  Object.assign(B.cs, { chips: ['B2C (مصرف‌کننده)', 'بازار خاص (Niche)'], score: 3, evidence: 'early', summary: 'خانواده‌های شاغل قم که وقت خرید از تره‌بار ندارند',
+    answers: { cs1: 'خانواده‌های ۳ تا ۵ نفره در پردیسان و صفاییهٔ قم که هر دو والد شاغل‌اند.', cs2: 'خرید هفتگی از تره‌بار یا سوپرمارکت محله؛ حدود ۲ ساعت وقت در هفته و کیفیت متغیر.', cs7: '۱۲ مصاحبهٔ حضوری؛ بیشترین شکایت: تازه نبودن سبزی سوپرمارکت.', cs_s_mvp: 'حدود ۷۰٪ مشترکان آزمایشی خانوادهٔ شاغل‌اند؛ بقیه سالمندند.' },
+    flags: { cs5: true }, notes: { cs5: 'تعداد خانوار هدف در دو محله را از کجا برآورد کرده‌اید؟' } });
+  Object.assign(B.vp, { chips: ['عملکرد یا کیفیت بهتر', 'راحتی و سهولت'], score: 4, evidence: 'early', summary: 'سبزی برداشت همان روز، درِ خانه، هر هفته',
+    answers: { vp1: 'برای خانواده‌های شاغل قم که وقت خرید تره‌بار ندارند، جعبهٔ هفتگی سبزی برداشت همان روز را درِ خانه تحویل می‌دهیم؛ برخلاف سوپرمارکت، محصول کمتر از ۲۴ ساعت از مزرعه فاصله دارد.', vp3: 'کمبود وقت و کیفیت پایین سبزی سوپرمارکت؛ هر هفته تکرار می‌شود.', vp5: 'کمتر از ۲۴ ساعت از برداشت؛ قیمت حدود ۱۰٪ بالاتر از تره‌بار.' } });
+  Object.assign(B.ch, { chips: ['پیام‌رسان (بله، ایتا، تلگرام)', 'اینستاگرام', 'ارجاع و دهان‌به‌دهان', 'کانال مستقیم خودمان'], score: 3, evidence: 'early', summary: 'کانال بله محله و معرفی دوستان؛ ارسال پنجشنبه',
+    answers: { ch2: 'معرفی دوستان و کانال بلهٔ محله.', ch5: 'پیک اجاره‌ای، پنجشنبه‌ها؛ هر ارسال ۶۰ هزار تومان.' } });
+  Object.assign(B.cr, { chips: ['خدمات شخصی', 'جامعهٔ کاربری'], score: 3, evidence: 'data', summary: 'گروه بلهٔ مشترکان و پیگیری تلفنی',
+    answers: { cr4: '۲۸ نفر از ۴۰ مشترک ماه دوم تمدید کردند (۷۰٪). دلیل اصلی ترک: سفر و تنوع کم.' } });
+  Object.assign(B.rs, { chips: ['اشتراک', 'قیمت ثابت'], score: 3, evidence: 'early', summary: 'اشتراک ماهانهٔ چهار جعبه',
+    answers: { rs2: 'اشتراک هفتگی با پرداخت ماهانه.', rs4: 'هر جعبه ۴۸۰ هزار تومان؛ ۴ جعبه در ماه.' },
+    flags: { rs7: true }, notes: { rs7: 'حاشیهٔ ۲۲٪ قبل از هزینهٔ ارسال است یا بعد از آن؟' } });
+  Object.assign(B.kr, { chips: ['فیزیکی', 'شبکهٔ ارتباطی'], score: 2, evidence: 'assume',
+    answers: { kr1: 'رابطه با ۳ کشاورز، سردخانهٔ کوچک اجاره‌ای، فهرست مشترکان.', kr7: 'بسته‌بندی را به یک کارگاه محلی سپرده‌ایم.' } });
+  Object.assign(B.ka, { chips: ['تأمین و لجستیک', 'بازاریابی و فروش'], score: 3, evidence: 'early',
+    answers: { ka1: 'هماهنگی برداشت، بسته‌بندی، توزیع پنجشنبه.' } });
+  Object.assign(B.co, { chips: ['هزینه‌محور'], score: 2, evidence: 'early',
+    answers: { co1: 'خرید محصول از کشاورز (۵۵٪)، ارسال (۱۵٪)، بسته‌بندی (۸٪).' } });
+  Object.assign(B.cp, { score: 2, answers: { cp1: 'تره‌بار آنلاین شهرداری، اسنپ‌مارکت، سوپرمارکت محله.' } });
+  s.econ = { aov: '480000', margin: '22', opm: '4', life: '3.3', cac: '450000', fixed: '45000000', revenue: '76800000', cash: '150000000' };
+  s.step = 'canvas';
+  return s;
+}
+
+let S;
+function loadInitial() {
+  try { const raw = localStorage.getItem(LS_KEY); if (raw) { S = normalize(JSON.parse(raw)); return; } } catch (e) { }
+  S = sampleState();
+}
+let saveTimer;
+function persist() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(() => { try { localStorage.setItem(LS_KEY, JSON.stringify(S)); } catch (e) { } }, 500);
+}
+function touched() { if (S.sample) { S.sample = false; renderBanner(); } persist(); }
+
+/* ===== محاسبات ===== */
+const stageOf = () => STAGES.find(s => s.id === S.meta.stage) || STAGES[0];
+function visibleQs(b, mode = S.mode) {
+  const list = b.q.map(([id, text, hint, key]) => ({ id, text, hint, key: !!key }));
+  const st = b.st && b.st[S.meta.stage];
+  if (st) list.push({ id: `${b.id}_s_${S.meta.stage}`, text: st, hint: '', key: true, stage: true });
+  return mode === 'key' ? list.filter(q => q.key) : list;
+}
+function qText(bid, qid) {
+  const b = BY_ID[bid];
+  const q = b.q.find(x => x[0] === qid);
+  if (q) return q[1];
+  const m = qid.match(/_s_(\w+)$/);
+  if (m && b.st[m[1]]) return b.st[m[1]];
+  return qid;
+}
+const filled = v => typeof v === 'string' && v.trim() !== '';
+function blockStats(id) {
+  const b = BY_ID[id], st = S.blocks[id];
+  const vis = visibleQs(b);
+  const answered = vis.filter(q => filled(st.answers[q.id])).length;
+  const flags = Object.keys(st.flags).filter(k => st.flags[k]).length;
+  const any = Object.values(st.answers).some(filled) || st.chips.length > 0 || filled(st.summary);
+  return { total: vis.length, answered, flags, any };
+}
+function econ() {
+  const n = {}; for (const f of ECON_FIELDS) n[f.id] = parseNum(S.econ[f.id]);
+  const gpOrder = n.aov * n.margin / 100;
+  const gpMonth = gpOrder * n.opm;
+  const ltv = gpMonth * n.life;
+  const ratio = ltv / n.cac;
+  const payback = n.cac / gpMonth;
+  const beOrders = n.fixed / gpOrder;
+  const beCust = n.fixed / gpMonth;
+  const gpNow = n.revenue * n.margin / 100;
+  const burn = n.fixed - gpNow;
+  const runway = isFinite(burn) ? (burn > 0 ? n.cash / burn : Infinity) : NaN;
+  return { n, gpOrder, gpMonth, ltv, ratio, payback, beOrders, beCust, gpNow, burn, runway };
+}
+function health() {
+  let sw = 0, s = 0, scored = 0;
+  for (const id of CORE) { const b = BY_ID[id], sc = S.blocks[id].score; if (sc > 0) { sw += b.weight; s += b.weight * sc; scored++; } }
+  const avg = sw ? s / sw : 0;
+  const pct = sw ? Math.round(avg / 5 * 100) : null;
+  let label = '—';
+  if (pct != null) label = pct >= 75 ? 'قوی' : pct >= 55 ? 'قابل‌قبول' : pct >= 40 ? 'نیازمند کار' : 'شکننده';
+  return { avg, pct, label, scored, coverage: scored / CORE.length };
+}
+const has = (id, chip) => S.blocks[id].chips.includes(chip);
+const hasAny = (id, list) => list.some(c => has(id, c));
+function warnings() {
+  const W = [], st = S.meta.stage, early = st === 'idea' || st === 'mvp';
+  const add = (sev, blocks, title, detail) => W.push({ sev, blocks, title, detail });
+  const B = S.blocks;
+  for (const id of CORE) if (!blockStats(id).any) add('info', [id], `«${BY_ID[id].title}» خالی است`, 'هنوز هیچ پاسخ یا انتخابی برای این بلوک ثبت نشده.');
+  for (const b of BLOCKS) if (B[b.id].score >= 4 && B[b.id].evidence === 'assume') add('warn', [b.id], `نمرهٔ بالای «${b.title}» بر پایهٔ فرض`, 'نمرهٔ ۴ یا ۵ با سطح شواهد «فرض» سازگار نیست. یا شواهد بخواهید یا نمره را پایین بیاورید.');
+  if (B.vp.score && B.cs.score && B.vp.score - B.cs.score >= 2) add('warn', ['vp', 'cs'], 'راه‌حل جلوتر از شناخت مشتری', 'ارزش پیشنهادی نمرهٔ بسیار بالاتری از شناخت مشتری گرفته. ارزشی که برای مشتری مبهم طراحی شده، معمولاً فرضی است.');
+  if (hasAny('cs', ['B2B (کسب‌وکار)', 'B2G (دولتی)']) && !hasAny('ch', ['تیم فروش حضوری', 'نماینده/عامل فروش', 'رویداد و نمایشگاه', 'تماس تلفنی'])) add('warn', ['cs', 'ch'], 'مشتری سازمانی بدون کانال فروش مستقیم', 'فروش به کسب‌وکار یا دولت معمولاً به فروش حضوری، تماس یا نماینده نیاز دارد؛ در کانال‌ها هیچ‌کدام انتخاب نشده.');
+  const segTypes = BLOCKS[0].chips[0].options.filter(o => has('cs', o));
+  if (early && segTypes.length >= 2) add('warn', ['cs'], 'تمرکز ناکافی روی یک بخش مشتری', `در مرحلهٔ «${stageOf().label}»، هدف گرفتن هم‌زمان ${faNum(segTypes.length)} نوع مشتری (${segTypes.join('، ')}) منابع را پخش می‌کند.`);
+  const chList = BY_ID.ch.chips[0].options.filter(o => has('ch', o));
+  if (chList.length === 1 && ['اینستاگرام', 'پیام‌رسان (بله، ایتا، تلگرام)', 'مارکت‌پلیس (دیجی‌کالا، باسلام، دیوار)'].includes(chList[0])) add('warn', ['ch'], 'وابستگی به یک پلتفرم بیرونی', `تنها کانال «${chList[0]}» است. تغییر قوانین، الگوریتم یا فیلترینگ می‌تواند فروش را یک‌شبه متوقف کند.`);
+  if (has('ch', 'کانال شریک') && !has('ch', 'کانال مستقیم خودمان')) add('info', ['ch', 'kp'], 'همهٔ کانال‌ها در اختیار شرکاست', 'رابطه با مشتری و داده‌اش دست شریک است. شرط‌های قرارداد و جایگزین را بررسی کنید.');
+  if (early && has('rs', 'تبلیغات')) add('warn', ['rs'], 'مدل درآمد تبلیغاتی در مرحلهٔ اولیه', 'درآمد تبلیغاتی به حجم بسیار بالای کاربر نیاز دارد. برای این مرحله، درآمد مستقیم از مشتری شواهد بهتری می‌سازد.');
+  if (has('vp', 'قیمت پایین‌تر') && has('co', 'ارزش‌محور')) add('warn', ['vp', 'co'], 'ناسازگاری ارزش «قیمت پایین‌تر» با ساختار هزینهٔ ارزش‌محور', 'ارزش پیشنهادی مبتنی بر قیمت پایین، ساختار هزینهٔ هزینه‌محور و بهینه می‌خواهد.');
+  if (hasAny('vp', ['برند و پرستیژ', 'شخصی‌سازی']) && has('co', 'هزینه‌محور') && !has('vp', 'قیمت پایین‌تر')) add('info', ['vp', 'co'], 'ارزش ممتاز با منطق هزینه‌محور', 'ارزش مبتنی بر برند یا شخصی‌سازی معمولاً هزینهٔ بیشتری می‌طلبد. مطمئن شوید صرفه‌جویی به ارزش آسیب نمی‌زند.');
+  if (has('co', 'وابسته به نرخ ارز') && has('rs', 'قیمت ثابت')) add('warn', ['co', 'rs'], 'هزینهٔ ارزی با قیمت ثابت', 'با جهش ارز، حاشیهٔ سود فرسوده می‌شود. سازوکار به‌روزرسانی قیمت لازم است.');
+  const outsourced = filled(B.kr.answers.kr7) || filled(B.ka.answers.ka7);
+  if (outsourced && !blockStats('kp').any) add('warn', ['kp', 'kr', 'ka'], 'برون‌سپاری بدون شریک تعریف‌شده', 'در منابع یا فعالیت‌ها از برون‌سپاری گفته شده، اما بلوک شرکای کلیدی خالی است.');
+  if ((st === 'traction' || st === 'growth') && B.rs.score > 0 && B.rs.score <= 2) add('crit', ['rs'], 'مرحلهٔ اعلام‌شده با درآمد سازگار نیست', `در مرحلهٔ «${stageOf().label}» انتظار درآمد تکرارشونده می‌رود، اما جریان درآمد نمرهٔ ${faNum(B.rs.score)} گرفته.`);
+  if ((st === 'traction' || st === 'growth') && B.cs.score > 0 && B.cs.score <= 2) add('warn', ['cs'], 'شناخت مشتری برای این مرحله ضعیف است', 'کسب‌وکاری که به کشش بازار رسیده باید مشتری سودآورش را دقیق بشناسد.');
+  const e = econ();
+  if (isFinite(e.ratio)) {
+    if (e.ratio < 1) add('crit', ['rs', 'co'], 'هر مشتری زیان می‌دهد', `ارزش طول عمر مشتری (${faNum(e.ltv)} تومان) کمتر از هزینهٔ جذب اوست. نسبت LTV به CAC: ${faNum(e.ratio, 1)}.`);
+    else if (e.ratio < 3) add('warn', ['rs', 'co'], 'نسبت LTV به CAC پایین است', `نسبت ${faNum(e.ratio, 1)} است؛ معیار رایج برای مدل سالم حدود ۳ یا بیشتر است.`);
+  }
+  if (isFinite(e.payback) && e.payback > 12) add('warn', ['co'], 'بازگشت هزینهٔ جذب طولانی است', `${faNum(e.payback, 1)} ماه طول می‌کشد تا هزینهٔ جذب هر مشتری برگردد.`);
+  if (isFinite(e.n.margin) && e.n.margin < 20) add('warn', ['rs', 'co'], 'حاشیهٔ سود ناخالص پایین', `حاشیهٔ ${faNum(e.n.margin)}٪ جای کمی برای بازاریابی، خطا و تورم باقی می‌گذارد.`);
+  if (isFinite(e.runway) && e.runway !== Infinity) {
+    if (e.runway < 6) add('crit', ['co'], 'نقدینگی کمتر از ۶ ماه', `با مصرف خالص ماهانهٔ ${faNum(e.burn)} تومان، نقدینگی حدود ${faNum(e.runway, 1)} ماه دوام می‌آورد.`);
+    else if (e.runway < 12) add('warn', ['co'], 'نقدینگی کمتر از یک سال', `حدود ${faNum(e.runway, 1)} ماه تا اتمام نقدینگی. برنامهٔ تأمین مالی یا سودآوری لازم است.`);
+  }
+  if (has('rs', 'اشتراک') && isFinite(e.n.opm) && e.n.opm < 1 && isFinite(e.n.life) && e.n.life < 3) add('warn', ['rs', 'cr'], 'مدل اشتراکی با ماندگاری کم', 'تکرار خرید و عمر مشتری برای مدل اشتراکی پایین است.');
+  if (!early && ECON_FIELDS.every(f => !isFinite(parseNum(S.econ[f.id])))) add('info', ['co', 'rs'], 'اقتصاد واحد وارد نشده', 'برای این مرحله اعداد پایه (قیمت، حاشیه، CAC، هزینهٔ ثابت) باید موجود باشد.');
+  if (!blockStats('cp').any) add('info', ['cp'], 'رقبا بررسی نشده', 'هیچ رقیب یا جایگزینی ثبت نشده. «رقیب نداریم» معمولاً یعنی بازار یا مسئله درست شناخته نشده.');
+  const fl = BLOCKS.reduce((a, b) => a + blockStats(b.id).flags, 0);
+  if (fl) add('info', [], `${faNum(fl)} ابهام باز`, 'این موارد در مرحلهٔ «پیگیری» برای ارسال به بنیان‌گذار جمع شده‌اند.');
+  const order = { crit: 0, warn: 1, info: 2 };
+  return W.sort((a, b) => order[a.sev] - order[b.sev]);
+}
+
+/* ===== رابط: عمومی ===== */
+const STEPS = [
+  { id: 'intake', label: 'دریافت اطلاعات' },
+  { id: 'canvas', label: 'تکمیل بوم' },
+  { id: 'econ', label: 'اقتصاد واحد' },
+  { id: 'followup', label: 'پیگیری ابهام‌ها' },
+  { id: 'dash', label: 'داشبورد و تحلیل' }
+];
+function toast(msg, kind = '') {
+  const t = $('#toast'); t.textContent = msg; t.className = 'toast show ' + kind;
+  clearTimeout(t._h); t._h = setTimeout(() => t.className = 'toast', 3200);
+}
+function autosize(el) { el.style.height = 'auto'; el.style.height = (el.scrollHeight + 2) + 'px'; }
+async function copyText(text, btn) {
+  try { await navigator.clipboard.writeText(text); toast('کپی شد'); }
+  catch (e) {
+    const ta = btn && btn.closest('.card') && $('textarea', btn.closest('.card'));
+    if (ta) { ta.focus(); ta.select(); }
+    toast('کپی خودکار ممکن نشد؛ متن انتخاب شد، با Ctrl+C کپی کنید', 'warn');
+  }
+}
+function renderStepper() {
+  $('#stepper').innerHTML = STEPS.map((s, i) => `<button class="step ${S.step === s.id ? 'on' : ''}" data-step="${s.id}" id="step-${s.id}"><span class="sn">${faNum(i + 1)}</span><span class="sl">${s.label}</span></button>`).join('');
+  for (const s of STEPS) $('#pane-' + s.id).hidden = S.step !== s.id;
+}
+function goStep(id) {
+  S.step = id; renderStepper(); persist();
+  if (id === 'canvas') { renderNav(); renderEditor(); }
+  if (id === 'econ') renderEcon();
+  if (id === 'followup') renderFollowups();
+  if (id === 'dash') renderDash();
+  if (id === 'intake') renderIntake();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function renderBanner() {
+  $('#sampleBanner').hidden = !S.sample;
+  $('#caseName').textContent = S.meta.name ? S.meta.name : 'پروندهٔ بی‌نام';
+  $('#caseStage').textContent = stageOf().label;
+}
+
+/* ===== مرحله ۱ ===== */
+function renderIntake() {
+  for (const el of $$('[data-meta]')) { if (document.activeElement !== el) el.value = S.meta[el.dataset.meta] || ''; }
+  $('#raw').value = S.raw || ''; autosize($('#raw'));
+  $('#stageSeg').innerHTML = STAGES.map(s => `<button class="seg ${S.meta.stage === s.id ? 'on' : ''}" data-stage="${s.id}"><b>${s.label}</b><small>${s.desc}</small></button>`).join('');
+  $('#requestMsg').value = requestMessage(); autosize($('#requestMsg'));
+}
+function requestMessage() {
+  const m = S.meta;
+  const lines = [];
+  lines.push(`سلام${m.founder ? ' ' + m.founder : ''}،`);
+  lines.push(`برای تحلیل مدل کسب‌وکار${m.name ? ' «' + m.name + '»' : ''}، لطفاً پیش از جلسه هر کدام از این موارد را که در دسترس است بفرستید:`);
+  lines.push('');
+  lines.push('مدارک:');
+  ['معرفی‌نامه یا پیچ‌دک', 'آمار فروش و تعداد مشتری ماه‌به‌ماه (حتی تقریبی)', 'فهرست هزینه‌های ثابت ماهانه و هزینهٔ تمام‌شدهٔ هر واحد', 'قیمت‌ها و نحوهٔ دریافت پول از مشتری', 'فهرست رقبا از نگاه خودتان', 'ترکیب تیم و نقش هر نفر'].forEach(x => lines.push('• ' + x));
+  lines.push('');
+  lines.push('سؤالات کلیدی:');
+  let i = 1;
+  for (const b of BLOCKS) {
+    const qs = visibleQs(b, 'key').slice(0, 2);
+    if (b.st[S.meta.stage]) { const sq = visibleQs(b, 'key').find(q => q.stage); if (sq && !qs.includes(sq)) qs.push(sq); }
+    lines.push(`\n${b.title}:`);
+    qs.forEach(q => lines.push(`${faNum(i++)}. ${q.text}`));
+  }
+  lines.push('\nاگر برای سؤالی عدد دقیق ندارید، برآورد تقریبی هم کمک می‌کند. ممنونم.');
+  return lines.join('\n');
+}
+
+/* ===== مرحله ۲: بوم ===== */
+function tileHTML(b, clickable = true) {
+  const s = blockStats(b.id), st = S.blocks[b.id];
+  return `<button class="tile r-${b.region} ${S.current === b.id && clickable ? 'on' : ''}" data-block="${b.id}" style="grid-area:${b.id}">
+    <span class="tno">${faNum(b.no)}</span>
+    <span class="ttl">${b.title}</span>
+    <span class="tmeta">
+      <span class="prog" title="پاسخ‌داده"><i style="width:${s.total ? Math.round(s.answered / s.total * 100) : 0}%"></i></span>
+      <span class="frac">${faNum(s.answered)}/${faNum(s.total)}</span>
+      ${s.flags ? `<span class="fdot" title="ابهام باز">${faNum(s.flags)} ابهام</span>` : ''}
+      <span class="sc ${st.score ? 's' + st.score : ''}">${st.score ? faNum(st.score) : '—'}</span>
+    </span></button>`;
+}
+function renderNav() {
+  const core = BLOCKS.filter(b => !b.supp), supp = BLOCKS.filter(b => b.supp);
+  $('#nav').innerHTML = `<div class="bmc">${core.map(b => tileHTML(b)).join('')}</div><div class="supp">${supp.map(b => tileHTML(b)).join('')}</div>`;
+  $('#modeSeg').innerHTML = [['key', 'سؤالات کلیدی'], ['all', 'همهٔ سؤالات']].map(([id, l]) => `<button class="mini ${S.mode === id ? 'on' : ''}" data-mode="${id}">${l}</button>`).join('');
+  $('#stageMini').innerHTML = STAGES.map(s => `<option value="${s.id}" ${S.meta.stage === s.id ? 'selected' : ''}>${s.label}</option>`).join('');
+}
+function refreshTile(id) {
+  const old = $(`#nav [data-block="${id}"]`); if (!old) return;
+  const tmp = document.createElement('div'); tmp.innerHTML = tileHTML(BY_ID[id]); old.replaceWith(tmp.firstElementChild);
+}
+function renderEditor() {
+  const b = BY_ID[S.current], st = S.blocks[b.id];
+  const qs = visibleQs(b);
+  const idx = BLOCKS.indexOf(b);
+  const prev = BLOCKS[idx - 1], next = BLOCKS[idx + 1];
+  $('#editor').innerHTML = `
+  <div class="ed-head r-${b.region}">
+    <div class="ed-tag">${REGION[b.region]} · بلوک ${faNum(b.no)}${b.supp ? ' (مکمل)' : ''}</div>
+    <h2>${b.title}</h2>
+    <p class="why">${b.why}</p>
+  </div>
+  ${b.chips.map((g, gi) => `<div class="chipgroup"><div class="lbl">${g.label}</div><div class="chips">${g.options.map(o => `<button class="chip ${st.chips.includes(o) ? 'on' : ''}" data-chip="${esc(o)}" aria-pressed="${st.chips.includes(o)}">${esc(o)}</button>`).join('')}</div></div>`).join('')}
+  <div class="qs">
+  ${qs.map((q, i) => `
+    <div class="q ${st.flags[q.id] ? 'flagged' : ''} ${q.stage ? 'stageq' : ''}" data-q="${q.id}">
+      <label for="a-${q.id}" class="qt">${q.stage ? `<span class="stbadge">مرحلهٔ ${stageOf().label}</span>` : ''}${esc(q.text)}</label>
+      ${q.hint ? `<div class="hint">${esc(q.hint)}</div>` : ''}
+      <textarea id="a-${q.id}" data-ans="${q.id}" rows="1" placeholder="پاسخ…">${esc(st.answers[q.id] || '')}</textarea>
+      <div class="qfoot">
+        <button class="flagbtn" data-flag="${q.id}" aria-pressed="${!!st.flags[q.id]}">${st.flags[q.id] ? 'ابهام علامت خورده' : 'علامت ابهام'}</button>
+        <input class="note" id="n-${q.id}" data-note="${q.id}" placeholder="سؤال دقیق برای بنیان‌گذار…" value="${esc(st.notes[q.id] || '')}" ${st.flags[q.id] ? '' : 'hidden'}>
+      </div>
+    </div>`).join('')}
+  </div>
+  <div class="sumbox">
+    <label for="sum-${b.id}" class="lbl">خلاصه برای نمای بوم <small>یک یا دو خط</small></label>
+    <textarea id="sum-${b.id}" data-sum rows="1" placeholder="مثلاً: خانواده‌های شاغل شهری که وقت خرید ندارند">${esc(st.summary)}</textarea>
+  </div>
+  <div class="scorebox">
+    <div class="lbl">ارزیابی تحلیل‌گر</div>
+    <div class="scores">${[1, 2, 3, 4, 5].map(n => `<button class="sbtn s${n} ${st.score === n ? 'on' : ''}" data-score="${n}" aria-pressed="${st.score === n}">${faNum(n)}</button>`).join('')}</div>
+    <div class="rubric">${[1, 3, 5].map(n => `<div><b>${faNum(n)}</b> ${b.rubric[n]}</div>`).join('')}</div>
+    <div class="lbl" style="margin-top:14px">سطح شواهد</div>
+    <div class="evs">${EVIDENCE.map(e => `<button class="ev ${st.evidence === e.id ? 'on' : ''}" data-ev="${e.id}"><b>${e.label}</b><small>${e.desc}</small></button>`).join('')}</div>
+    ${!b.supp ? `<div class="expect">انتظار برای مرحلهٔ «${stageOf().label}»: حدود ${faNum(stageOf().exp, 1)} از ۵</div>` : ''}
+  </div>
+  <div class="ednav">
+    ${prev ? `<button class="btn ghost" data-block="${prev.id}">→ ${prev.title}</button>` : '<span></span>'}
+    ${next ? `<button class="btn" data-block="${next.id}">${next.title} ←</button>` : `<button class="btn" data-step="econ">ادامه: اقتصاد واحد ←</button>`}
+  </div>`;
+  $$('#editor textarea').forEach(autosize);
+}
+
+/* ===== مرحله ۳: اقتصاد واحد ===== */
+function renderEcon() {
+  $('#econInputs').innerHTML = ECON_FIELDS.map(f => `<label class="field"><span>${f.label} <small>${f.unit}</small></span><input id="e-${f.id}" data-econ="${f.id}" inputmode="decimal" value="${esc(fmtInput(S.econ[f.id]))}" placeholder="—"></label>`).join('');
+  renderEconOut();
+}
+function fmtInput(v) { const n = parseNum(v); return isFinite(n) ? n.toLocaleString('fa-IR', { maximumFractionDigits: 2 }) : (v || ''); }
+function renderEconOut() {
+  const e = econ();
+  const card = (label, val, unit, note, state = '') => `<div class="kpi ${state}"><div class="kl">${label}</div><div class="kv">${val}<small>${unit}</small></div><div class="kn">${note}</div></div>`;
+  const ratioState = !isFinite(e.ratio) ? '' : e.ratio < 1 ? 'crit' : e.ratio < 3 ? 'warn' : 'ok';
+  const payState = !isFinite(e.payback) ? '' : e.payback > 12 ? 'warn' : 'ok';
+  const runState = !isFinite(e.runway) ? '' : e.runway === Infinity ? 'ok' : e.runway < 6 ? 'crit' : e.runway < 12 ? 'warn' : 'ok';
+  $('#econOut').innerHTML =
+    card('ارزش طول عمر مشتری (LTV)', faNum(e.ltv), 'تومان', 'سود ناخالص هر خرید × خرید ماهانه × عمر مشتری') +
+    card('نسبت LTV به CAC', faNum(e.ratio, 1), 'برابر', 'سالم: ۳ یا بیشتر', ratioState) +
+    card('بازگشت هزینهٔ جذب', faNum(e.payback, 1), 'ماه', 'خوب: کمتر از ۱۲ ماه', payState) +
+    card('نقطهٔ سربه‌سر', faNum(e.beCust), 'مشتری فعال', `معادل ${faNum(e.beOrders)} خرید در ماه`) +
+    card('مصرف خالص نقدینگی', isFinite(e.burn) ? (e.burn <= 0 ? 'سودده' : faNum(e.burn)) : '—', isFinite(e.burn) && e.burn > 0 ? 'تومان در ماه' : '', 'هزینهٔ ثابت منهای سود ناخالص ماه جاری') +
+    card('دوام نقدینگی (Runway)', e.runway === Infinity ? '∞' : faNum(e.runway, 1), 'ماه', 'خطر: کمتر از ۶ ماه', runState);
+}
+
+/* ===== مرحله ۴: پیگیری ===== */
+function followItems() {
+  const groups = [];
+  for (const b of BLOCKS) {
+    const st = S.blocks[b.id], items = [];
+    for (const qid of Object.keys(st.flags)) if (st.flags[qid]) items.push({ kind: 'flag', text: filled(st.notes[qid]) ? st.notes[qid] : qText(b.id, qid), q: qText(b.id, qid) });
+    if (S.fu.includeEmpty) for (const q of visibleQs(b, 'key')) if (!filled(st.answers[q.id]) && !st.flags[q.id]) items.push({ kind: 'empty', text: q.text });
+    if (items.length) groups.push({ title: b.title, items });
+  }
+  const ai = (S.ai && Array.isArray(S.ai.questions) ? S.ai.questions : []).filter((q, i) => S.fu.aiPicked[i] !== false);
+  const custom = S.fu.custom.filter(filled);
+  if (ai.length || custom.length) groups.push({ title: 'سؤالات تکمیلی', items: [...ai.map(t => ({ kind: 'ai', text: t })), ...custom.map(t => ({ kind: 'custom', text: t }))] });
+  return groups;
+}
+function followMessage() {
+  const g = followItems(), m = S.meta;
+  if (!g.length) return '';
+  const L = [`سلام${m.founder ? ' ' + m.founder : ''}،`, `ممنون از اطلاعاتی که${m.name ? ' دربارهٔ «' + m.name + '»' : ''} فرستادید. برای تکمیل تحلیل، به پاسخ این سؤال‌ها نیاز دارم:`];
+  let i = 1;
+  for (const grp of g) { L.push(`\n${grp.title}:`); grp.items.forEach(it => L.push(`${faNum(i++)}. ${it.text}`)); }
+  L.push('\nاگر برای سؤالی عدد دقیق ندارید، برآورد تقریبی هم کمک می‌کند. ممنونم.');
+  return L.join('\n');
+}
+function renderFollowups() {
+  const flagged = [];
+  for (const b of BLOCKS) { const st = S.blocks[b.id]; for (const q of Object.keys(st.flags)) if (st.flags[q]) flagged.push({ b, q, note: st.notes[q] || '' }); }
+  $('#fuFlags').innerHTML = flagged.length ? flagged.map(f => `<div class="fu-item"><span class="btag r-${f.b.region}">${f.b.title}</span><div><div class="fq">${esc(qText(f.b.id, f.q))}</div>${f.note ? `<div class="fn">سؤال برای بنیان‌گذار: ${esc(f.note)}</div>` : '<div class="fn muted">یادداشتی ثبت نشده؛ خود سؤال ارسال می‌شود.</div>'}</div><button class="link" data-goto="${f.b.id}">ویرایش</button></div>`).join('')
+    : `<div class="empty">هنوز ابهامی علامت نخورده. در مرحلهٔ «تکمیل بوم»، کنار هر سؤال مبهم دکمهٔ «علامت ابهام» را بزنید.</div>`;
+  $('#fuEmpty').checked = !!S.fu.includeEmpty;
+  const aiq = S.ai && Array.isArray(S.ai.questions) ? S.ai.questions : [];
+  $('#fuAI').innerHTML = aiq.length ? aiq.map((q, i) => `<label class="check"><input type="checkbox" data-aiq="${i}" ${S.fu.aiPicked[i] !== false ? 'checked' : ''}><span>${esc(q)}</span></label>`).join('')
+    : `<div class="empty">بعد از اجرای «تحلیل هوش مصنوعی» در داشبورد، سؤالات پیشنهادی اینجا می‌آیند.</div>`;
+  $('#fuCustom').innerHTML = S.fu.custom.map((c, i) => `<div class="custom-row"><input data-custom="${i}" id="cu-${i}" value="${esc(c)}" placeholder="سؤال دلخواه…"><button class="link danger" data-delcustom="${i}">حذف</button></div>`).join('');
+  $('#fuMsg').value = followMessage() || 'هنوز سؤالی برای ارسال نیست.'; autosize($('#fuMsg'));
+}
+
+/* ===== مرحله ۵: داشبورد ===== */
+function renderDash() {
+  const h = health(), W = warnings(), stg = stageOf();
+  const cnt = s => W.filter(w => w.sev === s).length;
+  const ringPct = h.pct ?? 0;
+  $('#dashTop').innerHTML = `
+    <div class="gauge"><svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="50" class="g-bg"/><circle cx="60" cy="60" r="50" class="g-fg ${h.pct == null ? '' : h.pct >= 75 ? 'ok' : h.pct >= 55 ? 'mid' : h.pct >= 40 ? 'warn' : 'crit'}" stroke-dasharray="${(ringPct / 100 * 314.16).toFixed(1)} 314.16" transform="rotate(-90 60 60)"/></svg>
+      <div class="gv"><b>${h.pct == null ? '—' : faNum(h.pct)}</b><span>از ۱۰۰</span></div></div>
+    <div class="dstats">
+      <div class="dlabel">سلامت مدل کسب‌وکار</div>
+      <div class="dbig">${h.label}</div>
+      <div class="drow">
+        <span>پوشش نمره‌دهی: <b>${faNum(h.scored)} از ${faNum(CORE.length)}</b> بلوک</span>
+        <span>مرحله: <b>${stg.label}</b> · انتظار ${faNum(stg.exp, 1)} از ۵</span>
+        <span>میانگین وزنی: <b>${h.avg ? faNum(h.avg, 1) : '—'}</b></span>
+      </div>
+      <div class="pills"><span class="pill crit">${faNum(cnt('crit'))} بحرانی</span><span class="pill warn">${faNum(cnt('warn'))} هشدار</span><span class="pill info">${faNum(cnt('info'))} یادآوری</span></div>
+    </div>`;
+  const aiScores = S.ai && S.ai.scores || {};
+  $('#bars').innerHTML = `<div class="bars-axis"><span></span><div class="axis">${[0, 1, 2, 3, 4, 5].map(n => `<span style="right:${n * 20}%">${faNum(n)}</span>`).join('')}</div><span></span></div>` + BLOCKS.map(b => {
+    const sc = S.blocks[b.id].score, ai = aiScores[b.id] && Number(aiScores[b.id].score) || 0;
+    const ev = EVIDENCE.find(e => e.id === S.blocks[b.id].evidence);
+    return `<div class="bar-row"><span class="bl">${b.title}</span>
+      <div class="track">${[1, 2, 3, 4].map(n => `<i class="grid" style="right:${n * 20}%"></i>`).join('')}
+        <div class="fill r-${b.region}" style="width:${sc * 20}%"></div>
+        ${!b.supp ? `<i class="exp" style="right:${stg.exp * 20}%" title="انتظار مرحله"></i>` : ''}
+        ${ai ? `<i class="aimark" style="right:calc(${ai * 20}% - 5px)" title="نمرهٔ پیشنهادی هوش مصنوعی: ${ai}"></i>` : ''}
+      </div>
+      <span class="bv">${sc ? faNum(sc) : '—'}${ev ? `<small>${ev.label}</small>` : ''}</span></div>`;
+  }).join('') + `<div class="legend"><span><i class="lg exp"></i>انتظار مرحله</span>${Object.keys(aiScores).length ? '<span><i class="lg aimark"></i>نمرهٔ پیشنهادی هوش مصنوعی</span>' : ''}<span><i class="lg r-d"></i>سمت مشتری</span><span><i class="lg r-f"></i>زیرساخت</span><span><i class="lg r-v"></i>مالی</span><span><i class="lg r-s"></i>مکمل</span></div>`;
+  $('#canvasView').innerHTML = `<div class="bmc view">${BLOCKS.filter(b => !b.supp).map(b => cellHTML(b)).join('')}</div><div class="supp view">${BLOCKS.filter(b => b.supp).map(b => cellHTML(b)).join('')}</div>`;
+  $('#warnList').innerHTML = W.length ? W.map(w => `<div class="warn-item ${w.sev}"><span class="sev">${{ crit: 'بحرانی', warn: 'هشدار', info: 'یادآوری' }[w.sev]}</span><div><b>${esc(w.title)}</b><p>${esc(w.detail)}</p>${w.blocks.length ? `<div class="wb">${w.blocks.map(id => `<button class="link" data-goto="${id}">${BY_ID[id].title}</button>`).join('')}</div>` : ''}</div></div>`).join('') : '<div class="empty">هشداری پیدا نشد.</div>';
+  renderAI();
+}
+function cellHTML(b) {
+  const st = S.blocks[b.id];
+  const pts = filled(st.summary) ? [st.summary] : visibleQs(b, 'all').map(q => st.answers[q.id]).filter(filled).slice(0, 2);
+  return `<div class="cell r-${b.region}" style="grid-area:${b.id}">
+    <div class="ch"><span>${b.title}</span><span class="sc ${st.score ? 's' + st.score : ''}">${st.score ? faNum(st.score) : '—'}</span></div>
+    ${pts.length ? pts.map(p => `<p>${esc(p.length > 160 ? p.slice(0, 160) + '…' : p)}</p>`).join('') : '<p class="muted">خالی</p>'}
+    ${st.chips.length ? `<div class="cchips">${st.chips.map(c => `<span>${esc(c)}</span>`).join('')}</div>` : ''}
+  </div>`;
+}
+
+/* ===== هوش مصنوعی ===== */
+let sampleFn = null, aiCtl = null;
+async function initCaps() {
+  if (!IN_CLAUDE) { setAIAvail(false); setDlAvail(true); return; }
+  try { sampleFn = await window.claude.use('sample'); } catch (e) { sampleFn = null; }
+  setAIAvail(!!sampleFn);
+  try { downloads = await window.claude.use('downloads'); } catch (e) { downloads = null; }
+  setDlAvail(!!downloads);
+}
+function setAIAvail(ok) {
+  $$('.ai-only').forEach(el => el.hidden = !ok);
+  $$('.ai-off').forEach(el => el.hidden = ok);
+}
+function aiErrorText(e) {
+  const c = e && e.code;
+  if (c === 'cancelled') return 'متوقف شد.';
+  if (['not_granted', 'sampling_disabled', 'not_declared', 'capability_disabled', 'capability_removed'].includes(c)) { setAIAvail(false); return 'دسترسی به هوش مصنوعی در این نما فعال نیست.'; }
+  if (c === 'rate_limited') return 'درخواست‌ها زیاد شده یا سقف استفاده پر است. کمی بعد دوباره امتحان کنید.';
+  if (c === 'session_expired') return 'نشست منقضی شده؛ دوباره وارد حساب شوید.';
+  if (c === 'prompt_too_large') return 'متن ورودی خیلی طولانی است؛ یادداشت‌ها را کوتاه‌تر کنید.';
+  if (c === 'invalid_json') return 'پاسخ قابل‌خواندن نبود. دوباره امتحان کنید.';
+  if (c === 'refused') return 'این درخواست پاسخ داده نشد. متن ورودی را بازبینی کنید.';
+  return 'ارتباط قطع شد. دوباره امتحان کنید.';
+}
+function catalogText(withStage = true) {
+  return BLOCKS.map(b => {
+    const qs = b.q.map(q => `  ${q[0]}: ${q[1]}`);
+    if (withStage && b.st[S.meta.stage]) qs.push(`  ${b.id}_s_${S.meta.stage}: ${b.st[S.meta.stage]}`);
+    return `[${b.id}] ${b.title}\n${qs.join('\n')}\n  گزینه‌های چیپ: ${b.chips.flatMap(g => g.options).join(' | ')}`;
+  }).join('\n');
+}
+async function aiDraft() {
+  const raw = S.raw.trim();
+  if (raw.length < 40) { toast('اول یادداشت‌های خام بنیان‌گذار را وارد کنید', 'warn'); return; }
+  const btn = $('#draftBtn'), status = $('#draftStatus');
+  aiCtl = new AbortController();
+  btn.disabled = true; $('#draftStop').hidden = false; status.textContent = 'در حال خواندن یادداشت‌ها…'; status.className = 'status busy';
+  try {
+    const r = await sampleFn.json(draftPrompt(), { signal: aiCtl.signal, modelTier: 'default', onText: ({ text }) => { status.textContent = `در حال نوشتن پیش‌نویس… (${faNum(text.length)} نویسه)`; } });
+    applyDraft(r, status);
+  } catch (e) {
+    status.className = e && e.code === 'cancelled' ? 'status' : 'status err';
+    status.textContent = aiErrorText(e);
+  } finally { btn.disabled = false; $('#draftStop').hidden = true; aiCtl = null; }
+}
+function applyDraft(r, status) {
+  const n = mergeDraft(r || {});
+  status.className = 'status ok';
+  status.textContent = `پیش‌نویس اعمال شد: ${faNum(n.answers)} پاسخ، ${faNum(n.chips)} انتخاب، ${faNum(n.flags)} ابهام. فقط فیلدهای خالی پر شدند.${n.stageHint ? ` پیشنهاد مرحله: «${n.stageHint}».` : ''}`;
+  touched(); renderIntake(); renderBanner();
+}
+function draftPrompt() {
+  const raw = S.raw.trim();
+  return `تو یک تحلیل‌گر کسب‌وکار هستی. از روی یادداشت‌های خام زیر که از بنیان‌گذار یک کسب‌وکار گرفته شده، پیش‌نویس بوم کسب‌وکار را بنویس.
+قوانین:
+- فقط از اطلاعاتی استفاده کن که در یادداشت‌ها آمده یا مستقیماً از آن نتیجه می‌شود. چیزی از خودت نساز. اگر پاسخ سؤالی در یادداشت‌ها نیست، آن سؤال را در answers نیاور.
+- پاسخ‌ها فارسی، کوتاه و مشخص باشند (حداکثر دو جمله) و اعداد یادداشت‌ها را حفظ کنند.
+- چیپ‌ها را فقط از گزینه‌های همان بلوک و دقیقاً با همان نوشتار انتخاب کن.
+- summary یک خط کوتاه برای نمای بوم است؛ فقط برای بلوک‌هایی که اطلاعات دارند.
+- هر جا یادداشت‌ها مبهم، ناقص یا متناقض است، در ambiguities بیاور: شناسهٔ سؤال مرتبط و یک سؤال دقیق و مؤدبانه برای پرسیدن از بنیان‌گذار. حداکثر ۸ مورد.
+- econ را فقط برای اعدادی که در یادداشت‌ها آمده پر کن، به صورت عدد خالص. واحد پول تومان است. کلیدها: aov (میانگین مبلغ هر خرید)، margin (درصد حاشیهٔ سود ناخالص)، opm (تعداد خرید هر مشتری در ماه)، life (عمر مشتری به ماه)، cac (هزینهٔ جذب هر مشتری)، fixed (هزینهٔ ثابت ماهانه)، revenue (درآمد ماهانه)، cash (نقدینگی موجود).
+- stage حدسِ مرحلهٔ کسب‌وکار است: idea یا mvp یا traction یا growth.
+فقط یک JSON با این ساختار برگردان:
+{"meta":{"name":"","industry":"","founder":"","stage":"mvp"},"blocks":{"cs":{"answers":{"cs1":"..."},"chips":["..."],"summary":"..."}},"econ":{"aov":0},"ambiguities":[{"q":"cs5","ask":"..."}]}
+
+سؤالات و گزینه‌ها:
+${catalogText()}
+
+یادداشت‌های بنیان‌گذار:
+"""
+${raw.slice(0, 30000)}
+"""`;
+}
+function mergeDraft(r) {
+  const out = { answers: 0, chips: 0, flags: 0, stageHint: '' };
+  if (r.meta) {
+    for (const k of ['name', 'industry', 'founder']) if (filled(r.meta[k]) && !filled(S.meta[k])) S.meta[k] = String(r.meta[k]);
+    const sg = STAGES.find(s => s.id === r.meta.stage);
+    if (sg && sg.id !== S.meta.stage) out.stageHint = sg.label;
+  }
+  const valid = new Set();
+  for (const b of BLOCKS) { b.q.forEach(q => valid.add(q[0])); Object.keys(b.st).forEach(s => valid.add(`${b.id}_s_${s}`)); }
+  const blocks = r.blocks || {};
+  for (const b of BLOCKS) {
+    const src = blocks[b.id]; if (!src) continue;
+    const st = S.blocks[b.id];
+    for (const [qid, v] of Object.entries(src.answers || {})) {
+      if (!valid.has(qid) || !qid.startsWith(b.id) || !filled(v) || filled(st.answers[qid])) continue;
+      st.answers[qid] = String(v); out.answers++;
+    }
+    const opts = new Set(b.chips.flatMap(g => g.options));
+    for (const c of (src.chips || [])) if (opts.has(c) && !st.chips.includes(c)) { st.chips.push(c); out.chips++; }
+    if (filled(src.summary) && !filled(st.summary)) st.summary = String(src.summary);
+  }
+  for (const [k, v] of Object.entries(r.econ || {})) {
+    if (!ECON_FIELDS.some(f => f.id === k)) continue;
+    const n = parseNum(v); if (isFinite(n) && n !== 0 && !isFinite(parseNum(S.econ[k]))) S.econ[k] = String(n);
+  }
+  for (const a of (r.ambiguities || [])) {
+    if (!a || !valid.has(a.q)) continue;
+    const b = BLOCKS.find(x => a.q.startsWith(x.id)); if (!b) continue;
+    const st = S.blocks[b.id];
+    if (!st.flags[a.q]) { st.flags[a.q] = true; out.flags++; }
+    if (filled(a.ask) && !filled(st.notes[a.q])) st.notes[a.q] = String(a.ask);
+  }
+  return out;
+}
+function caseContext() {
+  const m = S.meta, stg = stageOf(), L = [];
+  L.push(`نام: ${m.name || '—'} | صنعت: ${m.industry || '—'} | مرحله: ${stg.label} (انتظار نمره حدود ${stg.exp} از ۵)`);
+  for (const b of BLOCKS) {
+    const st = S.blocks[b.id];
+    const ev = EVIDENCE.find(e => e.id === st.evidence);
+    L.push(`\n[${b.id}] ${b.title}${b.supp ? ' (مکمل)' : ''} | نمرهٔ تحلیل‌گر: ${st.score || 'ثبت نشده'} | شواهد: ${ev ? ev.label : 'ثبت نشده'}`);
+    if (st.chips.length) L.push(`انتخاب‌ها: ${st.chips.join('، ')}`);
+    if (filled(st.summary)) L.push(`خلاصه: ${st.summary}`);
+    for (const [qid, v] of Object.entries(st.answers)) if (filled(v)) L.push(`- ${qText(b.id, qid)} ← ${v.trim()}`);
+    for (const qid of Object.keys(st.flags)) if (st.flags[qid]) L.push(`* ابهام باز: ${qText(b.id, qid)}${filled(st.notes[qid]) ? ' (' + st.notes[qid] + ')' : ''}`);
+  }
+  const e = econ();
+  const ef = ECON_FIELDS.filter(f => isFinite(e.n[f.id])).map(f => `${f.label}: ${e.n[f.id]} ${f.unit}`);
+  if (ef.length) {
+    L.push('\nاقتصاد واحد: ' + ef.join(' | '));
+    L.push(`محاسبه‌شده: LTV=${isFinite(e.ltv) ? Math.round(e.ltv) : '—'} | LTV/CAC=${isFinite(e.ratio) ? e.ratio.toFixed(1) : '—'} | بازگشت CAC=${isFinite(e.payback) ? e.payback.toFixed(1) + ' ماه' : '—'} | سربه‌سر=${isFinite(e.beCust) ? Math.round(e.beCust) + ' مشتری' : '—'} | Runway=${e.runway === Infinity ? 'سودده' : isFinite(e.runway) ? e.runway.toFixed(1) + ' ماه' : '—'}`);
+  }
+  const W = warnings().filter(w => w.sev !== 'info');
+  if (W.length) L.push('\nهشدارهای قاعده‌محور: ' + W.map(w => w.title).join(' | '));
+  if (filled(S.raw)) L.push(`\nیادداشت‌های خام بنیان‌گذار:\n${S.raw.slice(0, 6000)}`);
+  return L.join('\n');
+}
+async function aiAnalyze() {
+  const any = BLOCKS.some(b => blockStats(b.id).any);
+  if (!any) { toast('بوم هنوز خالی است', 'warn'); return; }
+  const btn = $('#aiBtn'), status = $('#aiStatus');
+  aiCtl = new AbortController();
+  btn.disabled = true; $('#aiStop').hidden = false; status.className = 'status busy'; status.textContent = 'در حال تحلیل… این کار معمولاً یک تا دو دقیقه طول می‌کشد.';
+  try {
+    const r = await sampleFn.json(analysisPrompt(), { signal: aiCtl.signal, modelTier: 'complex', onText: ({ text }) => { status.textContent = `در حال نوشتن تحلیل… (${faNum(text.length)} نویسه)`; } });
+    applyAnalysis(r, status);
+  } catch (e) {
+    status.className = e && e.code === 'cancelled' ? 'status' : 'status err';
+    status.textContent = aiErrorText(e);
+  } finally { btn.disabled = false; $('#aiStop').hidden = true; aiCtl = null; }
+}
+function applyAnalysis(r, status) {
+  if (!r || typeof r !== 'object' || Array.isArray(r)) throw { code: 'invalid_json' };
+  S.ai = Object.assign(r, { at: new Date().toLocaleString('fa-IR') });
+  S.fu.aiPicked = {};
+  status.className = 'status ok'; status.textContent = 'تحلیل آماده شد. سؤالات پیشنهادی به مرحلهٔ «پیگیری» اضافه شدند.';
+  touched(); renderDash();
+}
+function analysisPrompt() {
+  return `تو مشاور ارشد استارتاپ و تحلیل‌گر مدل کسب‌وکار در بازار ایران هستی. داده‌های زیر بوم کسب‌وکاری است که یک تحلیل‌گر پر کرده. یک تحلیل صریح، مشخص و بی‌تعارف بنویس.
+- انتظار از مرحلهٔ اعلام‌شده را در نظر بگیر.
+- کلی‌گویی نکن؛ هر نکته باید به داده‌های همین پرونده ارجاع بدهد.
+- ناسازگاری بین بلوک‌ها را دقیق پیدا کن (مثلاً مشتری با کانال، ارزش با قیمت، هزینه با درآمد).
+- واقعیت‌های بازار ایران (تورم، نرخ ارز، وابستگی به پلتفرم‌ها، نقدینگی) را جایی که مرتبط است لحاظ کن.
+- اگر داده برای قضاوت دربارهٔ بلوکی کافی نیست، score را 0 بگذار و در reason بگو چه داده‌ای کم است.
+- همه‌چیز به فارسی.
+فقط یک JSON با این ساختار برگردان:
+{"verdict":"جمع‌بندی ۳ تا ۴ جمله","health":"قوی|قابل‌قبول|نیازمند کار|شکننده","strengths":[{"title":"","detail":""}],"weaknesses":[{"title":"","detail":""}],"inconsistencies":[{"blocks":["cs","ch"],"detail":""}],"risks":[{"title":"","severity":"high|medium|low","detail":""}],"scores":{"cs":{"score":3,"reason":"یک جمله"}},"actions":[{"title":"","why":"","horizon":"۳۰ روز|۹۰ روز|۶ ماه"}],"questions":["سؤال مشخص برای بنیان‌گذار"]}
+حداکثر ۴ نقطهٔ قوت، ۴ نقطهٔ ضعف، ۵ ریسک، ۳ تا ۵ اقدام اولویت‌دار و ۴ تا ۸ سؤال. scores برای همهٔ این شناسه‌ها: ${BLOCKS.map(b => b.id + '=' + b.title).join('، ')}.
+
+دادهٔ پرونده:
+${caseContext()}`;
+}
+
+/* حالت دستی هوش مصنوعی (نسخهٔ لوکال): کپی پرامپت ← پاسخ Claude را بچسبانید ← اعمال */
+function parseLooseJSON(text) {
+  const t = String(text || '').trim();
+  try { return JSON.parse(t); } catch (e) { }
+  const fence = t.match(/```(?:json)?\s*([\s\S]*?)```/i);
+  if (fence) { try { return JSON.parse(fence[1]); } catch (e) { } }
+  const a = t.indexOf('{'), b = t.lastIndexOf('}');
+  if (a >= 0 && b > a) { try { return JSON.parse(t.slice(a, b + 1)); } catch (e) { } }
+  return null;
+}
+const MANUAL_SUFFIX = '\n\nپاسخ را فقط به صورت یک بلوک JSON بنویس، بدون هیچ توضیح اضافه.';
+function manualCopy(kind, btn) {
+  if (kind === 'draft' && S.raw.trim().length < 40) { toast('اول یادداشت‌های خام بنیان‌گذار را وارد کنید', 'warn'); return; }
+  if (kind === 'analysis' && !BLOCKS.some(b => blockStats(b.id).any)) { toast('بوم هنوز خالی است', 'warn'); return; }
+  const p = (kind === 'draft' ? draftPrompt() : analysisPrompt()) + MANUAL_SUFFIX;
+  navigator.clipboard.writeText(p).then(() => toast('پرامپت کپی شد؛ در Claude بچسبانید'), () => {
+    const box = $(kind === 'draft' ? '#mDraftIn' : '#mAiIn'); box.value = p; box.focus(); box.select(); autosize(box);
+    toast('کپی خودکار ممکن نشد؛ پرامپت در کادر پاسخ قرار گرفت، کپی کنید و کادر را خالی کنید', 'warn');
+  });
+}
+function manualApply(kind) {
+  const box = $(kind === 'draft' ? '#mDraftIn' : '#mAiIn');
+  const status = $(kind === 'draft' ? '#mDraftStatus' : '#mAiStatus');
+  const r = parseLooseJSON(box.value);
+  if (!r || typeof r !== 'object') { status.className = 'status err'; status.textContent = 'در متن چسبانده‌شده JSON معتبری پیدا نشد. کل پاسخ Claude را بچسبانید.'; return; }
+  try { kind === 'draft' ? applyDraft(r, status) : applyAnalysis(r, status); box.value = ''; autosize(box); }
+  catch (e) { status.className = 'status err'; status.textContent = 'ساختار پاسخ با انتظار برنامه نمی‌خواند. دوباره امتحان کنید.'; }
+}
+const arr = v => Array.isArray(v) ? v : [];
+function renderAI() {
+  const a = S.ai, box = $('#aiReport');
+  if (!a) { box.innerHTML = `<div class="empty">هنوز تحلیلی اجرا نشده. تحلیل هوش مصنوعی همهٔ پاسخ‌ها، نمره‌ها، اقتصاد واحد و هشدارها را می‌خواند و جمع‌بندی، ناسازگاری‌ها، ریسک‌ها و اقدامات اولویت‌دار را برمی‌گرداند.</div>`; return; }
+  const sevL = { high: 'زیاد', medium: 'متوسط', low: 'کم' };
+  const sc = a.scores || {};
+  box.innerHTML = `
+    <div class="ai-verdict"><span class="pill ${a.health === 'قوی' ? 'ok' : a.health === 'قابل‌قبول' ? 'info' : a.health === 'نیازمند کار' ? 'warn' : 'crit'}">${esc(a.health || '')}</span><p>${esc(a.verdict || '')}</p><small class="muted">زمان تحلیل: ${esc(a.at || '')}</small></div>
+    <div class="two">
+      <div><h4>نقاط قوت</h4>${arr(a.strengths).map(x => `<div class="pt ok"><b>${esc(x.title)}</b><p>${esc(x.detail)}</p></div>`).join('') || '<p class="muted">—</p>'}</div>
+      <div><h4>نقاط ضعف</h4>${arr(a.weaknesses).map(x => `<div class="pt crit"><b>${esc(x.title)}</b><p>${esc(x.detail)}</p></div>`).join('') || '<p class="muted">—</p>'}</div>
+    </div>
+    ${arr(a.inconsistencies).length ? `<h4>ناسازگاری‌ها</h4>${arr(a.inconsistencies).map(x => `<div class="pt warn"><div class="wb">${arr(x.blocks).filter(id => BY_ID[id]).map(id => `<span class="btag r-${BY_ID[id].region}">${BY_ID[id].title}</span>`).join('')}</div><p>${esc(x.detail)}</p></div>`).join('')}` : ''}
+    ${arr(a.risks).length ? `<h4>ریسک‌ها</h4><div class="risks">${arr(a.risks).map(x => `<div class="risk ${x.severity}"><span class="sev">${sevL[x.severity] || ''}</span><div><b>${esc(x.title)}</b><p>${esc(x.detail)}</p></div></div>`).join('')}</div>` : ''}
+    ${arr(a.actions).length ? `<h4>اقدامات اولویت‌دار</h4><ol class="actions">${arr(a.actions).map(x => `<li><div><b>${esc(x.title)}</b><span class="hz">${esc(x.horizon || '')}</span></div><p>${esc(x.why)}</p></li>`).join('')}</ol>` : ''}
+    <h4>مقایسهٔ نمره‌ها</h4>
+    <div class="tablewrap"><table class="cmp"><thead><tr><th>بلوک</th><th>تحلیل‌گر</th><th>هوش مصنوعی</th><th>دلیل</th></tr></thead><tbody>
+      ${BLOCKS.map(b => { const s = sc[b.id] || {}; const mine = S.blocks[b.id].score; const ai = Number(s.score) || 0; const gap = mine && ai && Math.abs(mine - ai) >= 2; return `<tr class="${gap ? 'gap' : ''}"><td>${b.title}</td><td class="num">${mine ? faNum(mine) : '—'}</td><td class="num">${ai ? faNum(ai) : '—'}</td><td>${esc(s.reason || '')}</td></tr>`; }).join('')}
+    </tbody></table></div>`;
+}
+
+/* ===== فایل‌ها و خروجی ===== */
+let downloads = null;
+function setDlAvail(ok) { $$('.dl-only').forEach(el => el.disabled = !ok); $('#dlNote').hidden = ok; }
+const fileBase = () => (S.meta.name || 'بوم-کسب-و-کار').replace(/[\\/:*?"<>|]/g, '').trim().replace(/\s+/g, '-');
+function browserDownload(filename, data) {
+  const ext = filename.split('.').pop();
+  // بعضی مرورگرها نام فایل فارسی را در دانلود محلی نادیده می‌گیرند؛ نام لاتین امن می‌سازیم
+  if (/[^\x20-\x7E]/.test(filename)) {
+    const kind = /گزارش/.test(filename) ? 'report' : ext === 'json' ? 'case' : 'canvas';
+    filename = `bmc-${kind}-${new Date().toISOString().slice(0, 10)}.${ext}`;
+  }
+  const mime = { json: 'application/json', html: 'text/html;charset=utf-8', xlsx: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' }[ext] || 'application/octet-stream';
+  const blob = data instanceof Blob ? data : new Blob([data], { type: mime });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); a.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 3000);
+  toast('فایل دانلود شد');
+}
+async function saveFile(filename, data) {
+  if (!IN_CLAUDE) { browserDownload(filename, data); return; }
+  if (!downloads) { toast('ذخیرهٔ فایل در این نما در دسترس نیست', 'warn'); return; }
+  try { await downloads.save({ filename, data }); toast('فایل آماده شد'); }
+  catch (e) { if (e && e.code === 'declined') return; if (e && e.code === 'rate_limited') toast('یک پنجرهٔ ذخیره باز است', 'warn'); else toast('ذخیرهٔ فایل ممکن نشد', 'warn'); }
+}
+function exportJSON() { saveFile(fileBase() + '.json', JSON.stringify(Object.assign({}, S, { app: 'bmc-pro' }), null, 1)); }
+function importJSON(file) {
+  const fr = new FileReader();
+  fr.onload = () => {
+    try { const d = JSON.parse(fr.result); if (!d || !d.blocks || !d.meta) throw 0; S = normalize(d); S.sample = false; persist(); renderAll(); toast('پرونده باز شد'); }
+    catch (e) { toast('این فایل پروندهٔ بوم نیست', 'warn'); }
+  };
+  fr.readAsText(file);
+}
+function loadXLSX() {
+  if (window.XLSX) return Promise.resolve(window.XLSX);
+  return new Promise((res, rej) => { const s = document.createElement('script'); s.src = 'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js'; s.onload = () => res(window.XLSX); s.onerror = rej; document.head.appendChild(s); });
+}
+async function exportXLSX() {
+  let X; try { X = await loadXLSX(); } catch (e) { toast('کتابخانهٔ اکسل بارگذاری نشد', 'warn'); return; }
+  const wb = X.utils.book_new(); wb.Workbook = { Views: [{ RTL: true }] };
+  const sheet = (rows, widths, name) => { const ws = X.utils.aoa_to_sheet(rows); ws['!cols'] = widths.map(w => ({ wch: w })); X.utils.book_append_sheet(wb, ws, name); };
+  const m = S.meta, h = health(), stg = stageOf(), e = econ();
+  sheet([
+    ['بوم کسب‌وکار', m.name], ['بنیان‌گذار', m.founder], ['صنعت', m.industry], ['تحلیل‌گر', m.analyst], ['تاریخ', m.date], ['مرحله', stg.label], ['منبع اطلاعات', m.source],
+    ['سلامت مدل (از ۱۰۰)', h.pct ?? ''], ['وضعیت', h.label], [],
+    ['بلوک', 'ناحیه', 'نمره', 'شواهد', 'انتظار مرحله', 'انتخاب‌ها', 'خلاصه', 'نمرهٔ هوش مصنوعی'],
+    ...BLOCKS.map(b => { const st = S.blocks[b.id]; return [b.title, REGION[b.region], st.score || '', (EVIDENCE.find(x => x.id === st.evidence) || {}).label || '', b.supp ? '' : stg.exp, st.chips.join('، '), st.summary, (S.ai && S.ai.scores && S.ai.scores[b.id] && S.ai.scores[b.id].score) || '']; })
+  ], [22, 14, 8, 12, 12, 40, 50, 14], 'خلاصه');
+  const rows = [['بلوک', 'سؤال', 'پاسخ', 'ابهام', 'سؤال برای بنیان‌گذار']];
+  for (const b of BLOCKS) {
+    const st = S.blocks[b.id];
+    const ids = [...visibleQs(b, 'all').map(q => q.id), ...Object.keys(st.answers).filter(k => filled(st.answers[k]))];
+    [...new Set(ids)].forEach(id => rows.push([b.title, qText(b.id, id), st.answers[id] || '', st.flags[id] ? 'بله' : '', st.notes[id] || '']));
+  }
+  sheet(rows, [20, 60, 70, 8, 50], 'پاسخ‌ها');
+  sheet([['شاخص', 'مقدار', 'واحد'], ...ECON_FIELDS.map(f => [f.label, isFinite(e.n[f.id]) ? e.n[f.id] : '', f.unit]), [],
+    ['LTV', isFinite(e.ltv) ? Math.round(e.ltv) : '', 'تومان'], ['نسبت LTV به CAC', isFinite(e.ratio) ? +e.ratio.toFixed(2) : '', 'برابر'], ['بازگشت هزینهٔ جذب', isFinite(e.payback) ? +e.payback.toFixed(1) : '', 'ماه'],
+    ['نقطهٔ سربه‌سر', isFinite(e.beCust) ? Math.round(e.beCust) : '', 'مشتری فعال'], ['مصرف خالص ماهانه', isFinite(e.burn) ? Math.round(e.burn) : '', 'تومان'], ['دوام نقدینگی', e.runway === Infinity ? 'سودده' : isFinite(e.runway) ? +e.runway.toFixed(1) : '', 'ماه']], [32, 18, 14], 'اقتصاد واحد');
+  sheet([['سطح', 'عنوان', 'توضیح', 'بلوک‌ها'], ...warnings().map(w => [{ crit: 'بحرانی', warn: 'هشدار', info: 'یادآوری' }[w.sev], w.title, w.detail, w.blocks.map(id => BY_ID[id].title).join('، ')])], [10, 40, 80, 30], 'هشدارها');
+  const fm = followMessage(); if (fm) sheet(fm.split('\n').map(l => [l]), [110], 'سؤالات پیگیری');
+  if (S.ai) {
+    const a = S.ai, r = [['جمع‌بندی', a.verdict || ''], ['وضعیت', a.health || ''], []];
+    arr(a.strengths).forEach(x => r.push(['قوت', x.title, x.detail]));
+    arr(a.weaknesses).forEach(x => r.push(['ضعف', x.title, x.detail]));
+    arr(a.inconsistencies).forEach(x => r.push(['ناسازگاری', arr(x.blocks).map(id => BY_ID[id] ? BY_ID[id].title : id).join('، '), x.detail]));
+    arr(a.risks).forEach(x => r.push(['ریسک (' + ({ high: 'زیاد', medium: 'متوسط', low: 'کم' }[x.severity] || '') + ')', x.title, x.detail]));
+    arr(a.actions).forEach(x => r.push(['اقدام (' + (x.horizon || '') + ')', x.title, x.why]));
+    sheet(r, [18, 40, 90], 'تحلیل هوش مصنوعی');
+  }
+  const out = X.write(wb, { type: 'array', bookType: 'xlsx' });
+  saveFile(fileBase() + '.xlsx', out);
+}
+function exportReport() {
+  const m = S.meta, h = health(), stg = stageOf(), W = warnings(), e = econ(), a = S.ai;
+  const cells = BLOCKS.filter(b => !b.supp).map(b => cellHTML(b)).join('');
+  const supp = BLOCKS.filter(b => b.supp).map(b => cellHTML(b)).join('');
+  const fu = followItems();
+  const html = `<!doctype html><html lang="fa" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>گزارش بوم کسب‌وکار ${esc(m.name)}</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;600;800&display=swap">
+<style>
+body{font-family:Vazirmatn,Tahoma,sans-serif;color:#18252A;margin:0;padding:28px;background:#fff;line-height:1.75;font-size:13px}
+h1{margin:0;font-size:24px}h2{font-size:16px;margin:26px 0 10px;border-bottom:2px solid #18252A;padding-bottom:4px}
+.meta{color:#4A5A60;margin:4px 0 18px}.score{display:inline-block;background:#18252A;color:#fff;border-radius:6px;padding:4px 12px;font-weight:800}
+.bmc{display:grid;grid-template-columns:repeat(10,1fr);grid-template-areas:"cs cs cr cr vp vp ka ka kp kp" "cs cs ch ch vp vp kr kr kp kp" "rs rs rs rs rs co co co co co";gap:6px}
+.supp{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px}
+.cell{border:1px solid #c9d1ce;border-top:4px solid #888;border-radius:6px;padding:8px 10px;min-height:90px;break-inside:avoid}
+.cell.r-d{border-top-color:#1F6F78}.cell.r-f{border-top-color:#3D4E8C}.cell.r-v{border-top-color:#A8610B}.cell.r-s{border-top-color:#6B5B7B}
+.ch{display:flex;justify-content:space-between;font-weight:800;margin-bottom:4px}.cell p{margin:2px 0}.muted{color:#8a979b}
+.cchips span{display:inline-block;border:1px solid #c9d1ce;border-radius:20px;padding:0 7px;margin:2px;font-size:11px}
+table{border-collapse:collapse;width:100%}td,th{border:1px solid #d3dad7;padding:5px 8px;text-align:right;vertical-align:top}th{background:#eef1f0}
+.w{padding:6px 10px;border-right:4px solid #999;margin:6px 0;background:#f6f7f7}.w.crit{border-color:#B23A3A}.w.warn{border-color:#B7791F}.w.info{border-color:#3D4E8C}
+@media print{body{padding:0}h2{break-after:avoid}}
+</style></head><body>
+<h1>بوم کسب‌وکار: ${esc(m.name || 'بی‌نام')}</h1>
+<div class="meta">بنیان‌گذار: ${esc(m.founder || '—')} · صنعت: ${esc(m.industry || '—')} · مرحله: ${stg.label} · تحلیل‌گر: ${esc(m.analyst || '—')} · تاریخ: ${esc(m.date || '')}</div>
+<div><span class="score">سلامت مدل: ${h.pct == null ? '—' : faNum(h.pct) + ' از ۱۰۰'} · ${h.label}</span></div>
+<h2>بوم</h2><div class="bmc">${cells}</div><div class="supp">${supp}</div>
+<h2>نمره‌ها</h2><table><tr><th>بلوک</th><th>نمره</th><th>شواهد</th><th>انتظار مرحله</th>${a ? '<th>هوش مصنوعی</th>' : ''}</tr>
+${BLOCKS.map(b => { const st = S.blocks[b.id]; return `<tr><td>${b.title}</td><td>${st.score ? faNum(st.score) : '—'}</td><td>${(EVIDENCE.find(x => x.id === st.evidence) || {}).label || '—'}</td><td>${b.supp ? '' : faNum(stg.exp, 1)}</td>${a ? `<td>${a.scores && a.scores[b.id] && a.scores[b.id].score ? faNum(a.scores[b.id].score) + ' — ' + esc(a.scores[b.id].reason || '') : '—'}</td>` : ''}</tr>`; }).join('')}</table>
+<h2>اقتصاد واحد</h2><table>${ECON_FIELDS.map(f => `<tr><td>${f.label}</td><td>${faNum(e.n[f.id], 2)} ${f.unit}</td></tr>`).join('')}
+<tr><th>LTV</th><th>${faNum(e.ltv)} تومان</th></tr><tr><th>LTV به CAC</th><th>${faNum(e.ratio, 1)}</th></tr><tr><th>بازگشت هزینهٔ جذب</th><th>${faNum(e.payback, 1)} ماه</th></tr><tr><th>نقطهٔ سربه‌سر</th><th>${faNum(e.beCust)} مشتری فعال</th></tr><tr><th>دوام نقدینگی</th><th>${e.runway === Infinity ? 'سودده' : faNum(e.runway, 1) + ' ماه'}</th></tr></table>
+<h2>هشدارها و ناسازگاری‌ها</h2>${W.map(w => `<div class="w ${w.sev}"><b>${esc(w.title)}</b><br>${esc(w.detail)}</div>`).join('') || '<p>—</p>'}
+${a ? `<h2>تحلیل هوش مصنوعی</h2><p><b>${esc(a.health || '')}:</b> ${esc(a.verdict || '')}</p>
+<table><tr><th>نوع</th><th>عنوان</th><th>توضیح</th></tr>
+${arr(a.strengths).map(x => `<tr><td>قوت</td><td>${esc(x.title)}</td><td>${esc(x.detail)}</td></tr>`).join('')}
+${arr(a.weaknesses).map(x => `<tr><td>ضعف</td><td>${esc(x.title)}</td><td>${esc(x.detail)}</td></tr>`).join('')}
+${arr(a.inconsistencies).map(x => `<tr><td>ناسازگاری</td><td>${arr(x.blocks).map(id => BY_ID[id] ? BY_ID[id].title : esc(id)).join('، ')}</td><td>${esc(x.detail)}</td></tr>`).join('')}
+${arr(a.risks).map(x => `<tr><td>ریسک</td><td>${esc(x.title)}</td><td>${esc(x.detail)}</td></tr>`).join('')}
+${arr(a.actions).map(x => `<tr><td>اقدام · ${esc(x.horizon || '')}</td><td>${esc(x.title)}</td><td>${esc(x.why)}</td></tr>`).join('')}</table>` : ''}
+${fu.length ? `<h2>سؤالات پیگیری</h2>${fu.map(g => `<p><b>${esc(g.title)}</b></p><ul>${g.items.map(i => `<li>${esc(i.text)}</li>`).join('')}</ul>`).join('')}` : ''}
+<h2>پاسخ‌های کامل</h2>${BLOCKS.map(b => { const st = S.blocks[b.id]; const ids = Object.keys(st.answers).filter(k => filled(st.answers[k])); return ids.length ? `<p><b>${b.title}</b></p><table>${ids.map(id => `<tr><td style="width:40%">${esc(qText(b.id, id))}</td><td>${esc(st.answers[id])}</td></tr>`).join('')}</table>` : ''; }).join('')}
+</body></html>`;
+  saveFile(fileBase() + '-گزارش.html', html);
+}
+
+/* ===== رویدادها ===== */
+function renderAll() { renderBanner(); renderStepper(); renderIntake(); renderNav(); renderEditor(); renderEcon(); renderFollowups(); if (S.step === 'dash') renderDash(); }
+let confirmNew = false;
+document.addEventListener('click', ev => {
+  const t = ev.target.closest('button, [data-goto]'); if (!t) return;
+  const d = t.dataset;
+  if (d.step) { goStep(d.step); return; }
+  if (d.block) { S.current = d.block; if (S.step !== 'canvas') goStep('canvas'); else { renderNav(); renderEditor(); $('#editor').scrollIntoView({ behavior: 'smooth', block: 'start' }); } persist(); return; }
+  if (d.goto) { S.current = d.goto; goStep('canvas'); return; }
+  if (d.stage) { S.meta.stage = d.stage; touched(); renderIntake(); renderBanner(); return; }
+  if (d.mode) { S.mode = d.mode; persist(); renderNav(); renderEditor(); return; }
+  const b = S.blocks[S.current];
+  if (d.chip != null) { const i = b.chips.indexOf(d.chip); if (i >= 0) b.chips.splice(i, 1); else b.chips.push(d.chip); t.classList.toggle('on'); t.setAttribute('aria-pressed', i < 0); touched(); refreshTile(S.current); return; }
+  if (d.flag) { b.flags[d.flag] = !b.flags[d.flag]; const q = t.closest('.q'); q.classList.toggle('flagged', b.flags[d.flag]); t.textContent = b.flags[d.flag] ? 'ابهام علامت خورده' : 'علامت ابهام'; t.setAttribute('aria-pressed', b.flags[d.flag]); const n = $('.note', q); n.hidden = !b.flags[d.flag]; if (b.flags[d.flag]) n.focus(); touched(); refreshTile(S.current); return; }
+  if (d.score) { const n = +d.score; b.score = b.score === n ? 0 : n; $$('#editor .sbtn').forEach(x => { x.classList.toggle('on', +x.dataset.score === b.score); x.setAttribute('aria-pressed', +x.dataset.score === b.score); }); touched(); refreshTile(S.current); return; }
+  if (d.ev) { b.evidence = b.evidence === d.ev ? '' : d.ev; $$('#editor .ev').forEach(x => x.classList.toggle('on', x.dataset.ev === b.evidence)); touched(); return; }
+  if (d.delcustom != null) { S.fu.custom.splice(+d.delcustom, 1); touched(); renderFollowups(); return; }
+  switch (t.id) {
+    case 'draftBtn': aiDraft(); break;
+    case 'mDraftCopy': manualCopy('draft', t); break;
+    case 'mDraftApply': manualApply('draft'); break;
+    case 'mAiCopy': manualCopy('analysis', t); break;
+    case 'mAiApply': manualApply('analysis'); break;
+    case 'draftStop': case 'aiStop': aiCtl && aiCtl.abort(); break;
+    case 'aiBtn': aiAnalyze(); break;
+    case 'copyReq': copyText($('#requestMsg').value, t); break;
+    case 'copyFu': copyText($('#fuMsg').value, t); break;
+    case 'addCustom': S.fu.custom.push(''); renderFollowups(); setTimeout(() => { const el = $(`#cu-${S.fu.custom.length - 1}`); el && el.focus(); }); break;
+    case 'saveJson': case 'saveJson2': exportJSON(); break;
+    case 'openJson': $('#fileIn').click(); break;
+    case 'xlsxBtn': exportXLSX(); break;
+    case 'reportBtn': exportReport(); break;
+    case 'newCase':
+      if (!confirmNew) { confirmNew = true; t.textContent = 'همه‌چیز پاک شود؟ تأیید'; t.classList.add('danger'); setTimeout(() => { confirmNew = false; t.textContent = 'پروندهٔ جدید'; t.classList.remove('danger'); }, 4000); }
+      else { confirmNew = false; t.textContent = 'پروندهٔ جدید'; t.classList.remove('danger'); S = blankState(); persist(); renderAll(); toast('پروندهٔ جدید آماده است'); }
+      break;
+    case 'loadSample': S = sampleState(); persist(); renderAll(); break;
+  }
+});
+document.addEventListener('input', ev => {
+  const t = ev.target, d = t.dataset;
+  if (t.tagName === 'TEXTAREA') autosize(t);
+  if (d.meta) { S.meta[d.meta] = t.value; touched(); if (d.meta === 'name') renderBanner(); return; }
+  if (t.id === 'raw') { S.raw = t.value; touched(); return; }
+  if (d.econ) { S.econ[d.econ] = t.value; touched(); renderEconOut(); return; }
+  if (d.custom != null) { S.fu.custom[+d.custom] = t.value; touched(); $('#fuMsg').value = followMessage(); autosize($('#fuMsg')); return; }
+  const b = S.blocks[S.current];
+  if (d.ans) { b.answers[d.ans] = t.value; touched(); clearTimeout(t._r); t._r = setTimeout(() => refreshTile(S.current), 400); return; }
+  if (d.note) { b.notes[d.note] = t.value; touched(); return; }
+  if (d.sum != null) { b.summary = t.value; touched(); return; }
+});
+document.addEventListener('change', ev => {
+  const t = ev.target;
+  if (t.id === 'stageMini') { S.meta.stage = t.value; touched(); renderBanner(); renderNav(); renderEditor(); return; }
+  if (t.id === 'fuEmpty') { S.fu.includeEmpty = t.checked; persist(); renderFollowups(); return; }
+  if (t.dataset.aiq != null) { S.fu.aiPicked[+t.dataset.aiq] = t.checked; persist(); $('#fuMsg').value = followMessage(); autosize($('#fuMsg')); return; }
+  if (t.id === 'fileIn' && t.files[0]) { importJSON(t.files[0]); t.value = ''; return; }
+});
+document.addEventListener('focusout', ev => { const t = ev.target; if (t.dataset && t.dataset.econ) t.value = fmtInput(t.value); });
+document.addEventListener('focusin', ev => { const t = ev.target; if (t.dataset && t.dataset.econ) { const n = parseNum(t.value); if (isFinite(n)) t.value = String(n); } });
+
+loadInitial();
+renderAll();
+initCaps();
+
+</script>

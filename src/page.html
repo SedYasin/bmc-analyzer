@@ -1,0 +1,425 @@
+<title>بوم کسب‌وکار پیام</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=Vazirmatn:wght@400;500;700;800&display=swap">
+<style>
+/* چیدمان: نوار مراحل بالا، بوم ۹ خانه‌ای به‌عنوان ناوبری، ویرایشگر یک بلوک در هر لحظه */
+:root{
+  --bg:#F2F4F3; --surface:#FFFFFF; --surface-2:#E8ECEA; --ink:#17242A; --ink-2:#4B5B61; --ink-3:#7C8A8E; --line:#D2D9D6;
+  --accent:#9A5A0C; --accent-ink:#FFFFFF; --accent-soft:#F5E7D1;
+  --r-d:#1F6F78; --r-d-soft:#DCEDEE; --r-f:#3D4E8C; --r-f-soft:#E0E4F3; --r-v:#A8610B; --r-v-soft:#F5E7D1; --r-s:#6B5B7B; --r-s-soft:#EAE5EF;
+  --ok:#2E7D4F; --ok-soft:#DDF0E4; --warn:#9C6512; --warn-soft:#F7EBD3; --crit:#B23A3A; --crit-soft:#F6DEDE; --info:#3D4E8C; --info-soft:#E0E4F3;
+  --s1:#B23A3A; --s2:#C87A2A; --s3:#A99A2E; --s4:#5E9A4E; --s5:#2E7D4F;
+  --f-display:"Reem Kufi","Vazirmatn",Tahoma,sans-serif; --f-body:"Vazirmatn",Tahoma,"Segoe UI",sans-serif;
+  --radius:10px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#10171A; --surface:#172126; --surface-2:#1E2A30; --ink:#E5ECEA; --ink-2:#A7B5B8; --ink-3:#73848A; --line:#2B3A40;
+  --accent:#E3A04A; --accent-ink:#1A1206; --accent-soft:#3A2B17;
+  --r-d:#5DB6BE; --r-d-soft:#173236; --r-f:#93A2E3; --r-f-soft:#1F2540; --r-v:#E3A04A; --r-v-soft:#3A2B17; --r-s:#BBA6D0; --r-s-soft:#2B2433;
+  --ok:#5CC28A; --ok-soft:#173225; --warn:#E3B04A; --warn-soft:#3A2F17; --crit:#EE7B7B; --crit-soft:#3D1D1D; --info:#93A2E3; --info-soft:#1F2540;
+  --s1:#EE7B7B; --s2:#E8A15A; --s3:#D6C75A; --s4:#8CCB7A; --s5:#5CC28A; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#10171A; --surface:#172126; --surface-2:#1E2A30; --ink:#E5ECEA; --ink-2:#A7B5B8; --ink-3:#73848A; --line:#2B3A40;
+  --accent:#E3A04A; --accent-ink:#1A1206; --accent-soft:#3A2B17;
+  --r-d:#5DB6BE; --r-d-soft:#173236; --r-f:#93A2E3; --r-f-soft:#1F2540; --r-v:#E3A04A; --r-v-soft:#3A2B17; --r-s:#BBA6D0; --r-s-soft:#2B2433;
+  --ok:#5CC28A; --ok-soft:#173225; --warn:#E3B04A; --warn-soft:#3A2F17; --crit:#EE7B7B; --crit-soft:#3D1D1D; --info:#93A2E3; --info-soft:#1F2540;
+  --s1:#EE7B7B; --s2:#E8A15A; --s3:#D6C75A; --s4:#8CCB7A; --s5:#5CC28A; color-scheme:dark}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{direction:rtl}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14.5px;line-height:1.75;padding-inline:16px;padding-block:0 60px}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto}
+h1,h2,h3,h4{text-wrap:balance;margin:0}
+.muted{color:var(--ink-3)}
+
+/* سربرگ */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);margin-inline:-16px;padding:12px 16px 0;border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;flex-direction:column;gap:10px}
+.brandrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-family:var(--f-display);font-size:22px;font-weight:700;letter-spacing:0;display:flex;align-items:center;gap:10px}
+.brand .glyph{display:inline-grid;grid-template-columns:repeat(5,5px);grid-template-rows:repeat(3,5px);gap:2px}
+.brand .glyph i{background:var(--ink-3);border-radius:1px}
+.brand .glyph i:nth-child(1),.brand .glyph i:nth-child(6){background:var(--r-d)}
+.brand .glyph i:nth-child(3),.brand .glyph i:nth-child(8){background:var(--accent)}
+.case{display:flex;align-items:center;gap:8px;min-width:0;color:var(--ink-2)}
+.case b{color:var(--ink);font-weight:700;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:40vw}
+.case .stg{font-size:12px;border:1px solid var(--line);border-radius:20px;padding:0 9px;background:var(--surface)}
+.files{margin-inline-start:auto;display:flex;gap:6px;flex-wrap:wrap}
+.stepper{display:flex;gap:2px;overflow-x:auto;scrollbar-width:none}
+.stepper::-webkit-scrollbar{display:none}
+.step{display:flex;align-items:center;gap:8px;background:none;border:0;border-bottom:3px solid transparent;padding:6px 12px 10px;color:var(--ink-2);white-space:nowrap;font-weight:500}
+.step .sn{display:grid;place-items:center;width:22px;height:22px;border-radius:50%;border:1.5px solid var(--ink-3);font-size:12px;font-weight:700}
+.step.on{color:var(--ink);border-bottom-color:var(--accent)}
+.step.on .sn{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.step:hover{color:var(--ink)}
+
+/* عمومی */
+.btn{background:var(--ink);color:var(--bg);border:0;border-radius:8px;padding:8px 16px;font-weight:700;display:inline-flex;align-items:center;gap:6px}
+.btn.accent{background:var(--accent);color:var(--accent-ink)}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.sm{padding:5px 11px;font-size:13px;font-weight:500}
+.btn.danger{background:var(--crit);color:#fff;border-color:var(--crit)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.link{background:none;border:0;color:var(--accent);padding:0 4px;font-weight:500;text-decoration:underline;text-underline-offset:3px;text-decoration-thickness:1px}
+.link.danger{color:var(--crit)}
+.pane{padding-top:22px;display:flex;flex-direction:column;gap:18px}
+.pane-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap}
+.pane-head h1{font-family:var(--f-display);font-size:26px;font-weight:700}
+.pane-head p{margin:4px 0 0;color:var(--ink-2);max-width:68ch}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:18px 20px;min-width:0}
+.card h3{font-size:16px;font-weight:800;margin-bottom:4px}
+.card .sub{color:var(--ink-2);margin:0 0 14px;font-size:13.5px}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.field{display:flex;flex-direction:column;gap:4px;min-width:0}
+.field span{font-size:13px;color:var(--ink-2);font-weight:500}
+.field small{color:var(--ink-3);font-weight:400}
+input:not([type=checkbox]),textarea,select{width:100%;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 11px;line-height:1.7}
+textarea{resize:vertical;min-height:44px;overflow:hidden}
+input:focus,textarea:focus,select:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px var(--accent-soft)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.lbl{font-size:13px;font-weight:700;color:var(--ink-2);margin-bottom:6px}
+.lbl small{font-weight:400;color:var(--ink-3)}
+.status{font-size:13px;color:var(--ink-2);min-height:1.7em}
+.status.busy{color:var(--info)}
+.status.busy::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:currentColor;margin-inline-end:8px;animation:pulse 1s infinite}
+.status.ok{color:var(--ok)}.status.err{color:var(--crit)}
+@keyframes pulse{50%{opacity:.25}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.empty{color:var(--ink-3);padding:10px 0;font-size:13.5px}
+.banner{background:var(--accent-soft);border:1px solid var(--accent);color:var(--ink);border-radius:var(--radius);padding:10px 14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:16px;font-size:13.5px}
+.banner b{color:var(--accent)}
+.toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translate(-50%,20px);background:var(--ink);color:var(--bg);padding:9px 18px;border-radius:8px;opacity:0;pointer-events:none;transition:.2s;z-index:50;max-width:calc(100% - 32px);font-size:13.5px}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast.warn{background:var(--warn);color:#fff}
+
+/* مرحله ۱ */
+.manual{display:flex;flex-direction:column;gap:8px;margin-top:12px;border-top:1px dashed var(--line);padding-top:12px}
+.msteps{margin:0;padding-inline-start:20px;color:var(--ink-2);font-size:13px}
+#mDraftIn,#mAiIn{font-size:12.5px;direction:ltr;text-align:left;max-height:220px;overflow:auto}
+
+.seggrid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.seg{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 10px;text-align:right;display:flex;flex-direction:column;gap:2px}
+.seg b{font-size:13.5px}.seg small{color:var(--ink-3);font-size:11.5px;line-height:1.5}
+.seg.on{border-color:var(--accent);background:var(--accent-soft);box-shadow:inset 0 0 0 1px var(--accent)}
+#raw{min-height:180px}
+#requestMsg,#fuMsg{font-size:13.5px;background:var(--surface-2)}
+
+/* بوم */
+.toolbar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.miniseg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--surface)}
+.mini{border:0;background:none;padding:5px 12px;font-size:13px}
+.mini.on{background:var(--ink);color:var(--bg)}
+.toolbar select{width:auto;padding:5px 10px;font-size:13px}
+.bmc{display:grid;grid-template-columns:repeat(10,minmax(0,1fr));grid-template-areas:"cs cs cr cr vp vp ka ka kp kp" "cs cs ch ch vp vp kr kr kp kp" "rs rs rs rs rs co co co co co";gap:6px}
+.supp{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px}
+.tile{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--rc);border-radius:8px;padding:8px 10px;text-align:right;display:flex;flex-direction:column;gap:4px;min-height:74px;min-width:0;position:relative}
+.tile:hover{border-color:var(--rc)}
+.tile.on{background:var(--rs);border-color:var(--rc);box-shadow:inset 0 0 0 1px var(--rc)}
+.tile .tno{position:absolute;left:8px;top:6px;font-size:11px;color:var(--ink-3)}
+.tile .ttl{font-weight:700;font-size:13.5px;line-height:1.5;padding-left:16px}
+.tile .tmeta{display:flex;align-items:center;gap:6px;margin-top:auto;flex-wrap:wrap}
+.prog{flex:1;min-width:30px;height:4px;background:var(--surface-2);border-radius:2px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--rc)}
+.frac{font-size:11px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.fdot{font-size:10.5px;background:var(--warn-soft);color:var(--warn);border-radius:10px;padding:0 6px;font-weight:700}
+.sc{display:inline-grid;place-items:center;min-width:24px;height:24px;border-radius:6px;font-weight:800;font-size:13px;background:var(--surface-2);color:var(--ink-3)}
+.sc.s1{background:var(--s1);color:#fff}.sc.s2{background:var(--s2);color:#fff}.sc.s3{background:var(--s3);color:#1b1b1b}.sc.s4{background:var(--s4);color:#fff}.sc.s5{background:var(--s5);color:#fff}
+.r-d{--rc:var(--r-d);--rs:var(--r-d-soft)}.r-f{--rc:var(--r-f);--rs:var(--r-f-soft)}.r-v{--rc:var(--r-v);--rs:var(--r-v-soft)}.r-s{--rc:var(--r-s);--rs:var(--r-s-soft)}
+.regions{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--ink-2);margin-top:8px}
+.regions i{display:inline-block;width:10px;height:10px;border-radius:2px;background:var(--rc);margin-inline-end:5px;vertical-align:-1px}
+
+/* ویرایشگر */
+#editor{display:flex;flex-direction:column;gap:16px;scroll-margin-top:140px}
+.ed-head{border-right:4px solid var(--rc);padding-right:14px}
+.ed-tag{font-size:12px;color:var(--rc);font-weight:700;letter-spacing:.02em}
+.ed-head h2{font-family:var(--f-display);font-size:24px;font-weight:700;margin:2px 0}
+.why{margin:0;color:var(--ink-2);max-width:72ch}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:20px;padding:3px 12px;font-size:13px}
+.chip:hover{border-color:var(--ink-3)}
+.chip.on{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.qs{display:flex;flex-direction:column;gap:2px}
+.q{padding:12px 0;border-top:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.q .qt{font-weight:700;font-size:14.5px}
+.q .hint{font-size:12.5px;color:var(--ink-3);margin-top:-4px}
+.q.stageq .qt{color:var(--ink)}
+.stbadge{display:inline-block;font-size:11px;font-weight:700;background:var(--info-soft);color:var(--info);border-radius:10px;padding:0 8px;margin-inline-end:8px;vertical-align:2px}
+.q.flagged textarea{border-color:var(--warn)}
+.qfoot{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.flagbtn{background:none;border:1px dashed var(--line);border-radius:6px;font-size:12px;padding:2px 10px;color:var(--ink-3)}
+.flagbtn[aria-pressed="true"]{background:var(--warn-soft);border:1px solid var(--warn);color:var(--warn);font-weight:700}
+.note{flex:1;min-width:200px;font-size:13px;padding:4px 10px!important;border-color:var(--warn)!important;background:var(--warn-soft)!important}
+.sumbox,.scorebox{border-top:1px solid var(--line);padding-top:14px}
+.scores{display:flex;gap:6px}
+.sbtn{width:46px;height:40px;border-radius:8px;border:1px solid var(--line);background:var(--surface);font-weight:800;font-size:16px}
+.sbtn.on.s1{background:var(--s1);border-color:var(--s1);color:#fff}.sbtn.on.s2{background:var(--s2);border-color:var(--s2);color:#fff}.sbtn.on.s3{background:var(--s3);border-color:var(--s3);color:#1b1b1b}.sbtn.on.s4{background:var(--s4);border-color:var(--s4);color:#fff}.sbtn.on.s5{background:var(--s5);border-color:var(--s5);color:#fff}
+.rubric{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px;font-size:12.5px;color:var(--ink-2)}
+.rubric div{background:var(--surface-2);border-radius:6px;padding:6px 10px}
+.rubric b{color:var(--ink);margin-inline-end:4px}
+.evs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ev{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:6px 10px;text-align:right;display:flex;flex-direction:column}
+.ev small{color:var(--ink-3);font-size:11.5px}
+.ev.on{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.expect{margin-top:10px;font-size:12.5px;color:var(--info)}
+.ednav{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:14px}
+
+/* اقتصاد واحد */
+.econ-in{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.econ-in input{font-variant-numeric:tabular-nums}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;border-top:4px solid var(--line)}
+.kpi.ok{border-top-color:var(--ok)}.kpi.warn{border-top-color:var(--warn)}.kpi.crit{border-top-color:var(--crit)}
+.kl{font-size:13px;color:var(--ink-2);font-weight:500}
+.kv{font-size:24px;font-weight:800;font-variant-numeric:tabular-nums;margin:2px 0}
+.kv small{font-size:12px;font-weight:400;color:var(--ink-3);margin-inline-start:6px}
+.kn{font-size:12px;color:var(--ink-3)}
+
+/* پیگیری */
+.fu-item{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:start;padding:10px 0;border-top:1px solid var(--line)}
+.fu-item:first-child{border-top:0}
+.btag{font-size:11.5px;font-weight:700;color:var(--rc);background:var(--rs);border-radius:6px;padding:1px 8px;white-space:nowrap}
+.fq{font-weight:500}.fn{font-size:13px;color:var(--warn)}.fn.muted{color:var(--ink-3)}
+.check{display:flex;gap:10px;align-items:flex-start;padding:6px 0;border-top:1px solid var(--line)}
+.check input{margin-top:6px;accent-color:var(--accent)}
+.custom-row{display:flex;gap:8px;align-items:center;margin-bottom:6px}
+
+/* داشبورد */
+.dtop{display:flex;gap:24px;align-items:center;flex-wrap:wrap}
+.gauge{position:relative;width:132px;height:132px;flex:none}
+.gauge svg{width:100%;height:100%}
+.g-bg{fill:none;stroke:var(--surface-2);stroke-width:11}
+.g-fg{fill:none;stroke:var(--ink-3);stroke-width:11;stroke-linecap:round}
+.g-fg.ok{stroke:var(--ok)}.g-fg.mid{stroke:var(--s3)}.g-fg.warn{stroke:var(--s2)}.g-fg.crit{stroke:var(--crit)}
+.gv{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.gv b{font-size:34px;font-weight:800;line-height:1}.gv span{font-size:12px;color:var(--ink-3)}
+.dstats{flex:1;min-width:240px;display:flex;flex-direction:column;gap:6px}
+.dlabel{font-size:13px;color:var(--ink-2)}
+.dbig{font-family:var(--f-display);font-size:28px;font-weight:700;line-height:1.3}
+.drow{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;color:var(--ink-2)}
+.drow b{color:var(--ink)}
+.pills{display:flex;gap:6px;flex-wrap:wrap}
+.pill{font-size:12px;font-weight:700;border-radius:20px;padding:1px 10px}
+.pill.crit{background:var(--crit-soft);color:var(--crit)}.pill.warn{background:var(--warn-soft);color:var(--warn)}.pill.info{background:var(--info-soft);color:var(--info)}.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.bars-axis,.bar-row{display:grid;grid-template-columns:130px 1fr 92px;gap:12px;align-items:center}
+.axis{position:relative;height:18px;font-size:11px;color:var(--ink-3)}
+.axis span{position:absolute;transform:translateX(50%);top:0}
+.bar-row{padding:5px 0}
+.bl{font-size:13px;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.track{position:relative;height:16px;background:var(--surface-2);border-radius:4px}
+.track .grid{position:absolute;top:0;bottom:0;width:1px;background:var(--line)}
+.fill{position:absolute;right:0;top:0;bottom:0;background:var(--rc);border-radius:4px}
+.exp{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--ink);transform:translateX(50%)}
+.aimark{position:absolute;top:3px;width:10px;height:10px;border-radius:50%;background:var(--surface);border:2.5px solid var(--ink)}
+.bv{font-weight:800;font-variant-numeric:tabular-nums;display:flex;gap:6px;align-items:baseline}
+.bv small{font-weight:400;font-size:11px;color:var(--ink-3)}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--ink-2);margin-top:10px}
+.lg{display:inline-block;width:12px;height:12px;border-radius:2px;background:var(--rc);margin-inline-end:6px;vertical-align:-1px}
+.lg.exp{width:2px;background:var(--ink);position:static;transform:none}
+.lg.aimark{position:static;width:10px;height:10px;border-radius:50%;background:var(--surface);border:2.5px solid var(--ink)}
+.cell{background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--rc);border-radius:8px;padding:9px 11px;min-height:96px;min-width:0;font-size:13px}
+.cell .ch{display:flex;justify-content:space-between;align-items:center;gap:6px;font-weight:800;margin-bottom:4px}
+.cell p{margin:2px 0;color:var(--ink-2);overflow-wrap:anywhere}
+.cchips{display:flex;flex-wrap:wrap;gap:4px;margin-top:6px}
+.cchips span{font-size:11px;background:var(--rs);color:var(--rc);border-radius:10px;padding:0 7px}
+.warn-item{display:grid;grid-template-columns:auto 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line)}
+.warn-item:first-child{border-top:0}
+.warn-item .sev{font-size:11.5px;font-weight:800;border-radius:6px;padding:1px 8px;white-space:nowrap;height:fit-content}
+.warn-item.crit .sev{background:var(--crit-soft);color:var(--crit)}.warn-item.warn .sev{background:var(--warn-soft);color:var(--warn)}.warn-item.info .sev{background:var(--info-soft);color:var(--info)}
+.warn-item p{margin:2px 0 4px;color:var(--ink-2);font-size:13.5px}
+.wb{display:flex;gap:4px;flex-wrap:wrap}
+.ai-verdict{background:var(--surface-2);border-radius:8px;padding:12px 14px}
+.ai-verdict p{margin:6px 0 2px;font-size:15px}
+#aiReport h4{font-size:14.5px;margin:18px 0 8px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.pt{border-right:3px solid var(--line);padding:2px 12px 2px 0;margin-bottom:10px}
+.pt.ok{border-color:var(--ok)}.pt.crit{border-color:var(--crit)}.pt.warn{border-color:var(--warn)}
+.pt p{margin:2px 0;color:var(--ink-2);font-size:13.5px}
+.risks{display:flex;flex-direction:column;gap:8px}
+.risk{display:grid;grid-template-columns:auto 1fr;gap:10px}
+.risk .sev{font-size:11.5px;font-weight:800;border-radius:6px;padding:1px 8px;height:fit-content;background:var(--info-soft);color:var(--info)}
+.risk.high .sev{background:var(--crit-soft);color:var(--crit)}.risk.medium .sev{background:var(--warn-soft);color:var(--warn)}
+.risk p{margin:0;color:var(--ink-2);font-size:13.5px}
+.actions{margin:0;padding-inline-start:22px;display:flex;flex-direction:column;gap:8px}
+.actions li div{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.actions .hz{font-size:11.5px;background:var(--accent-soft);color:var(--accent);border-radius:10px;padding:0 8px;font-weight:700}
+.actions p{margin:0;color:var(--ink-2);font-size:13.5px}
+.tablewrap{overflow-x:auto}
+.cmp{border-collapse:collapse;width:100%;font-size:13px}
+.cmp th,.cmp td{border-bottom:1px solid var(--line);padding:6px 8px;text-align:right;vertical-align:top}
+.cmp th{color:var(--ink-2);font-weight:700}
+.cmp .num{font-weight:800;font-variant-numeric:tabular-nums;text-align:center;width:72px}
+.cmp tr.gap td{background:var(--warn-soft)}
+.exports{display:flex;gap:10px;flex-wrap:wrap}
+
+@media (max-width:860px){
+  .grid2,.two{grid-template-columns:1fr}
+  .econ-in{grid-template-columns:1fr 1fr}
+  .kpis{grid-template-columns:1fr 1fr}
+  .seggrid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:720px){
+  .bmc{grid-template-columns:1fr 1fr;grid-template-areas:none}
+  .bmc>*{grid-area:auto!important}
+  .rubric,.evs{grid-template-columns:1fr}
+  .bars-axis,.bar-row{grid-template-columns:96px 1fr 64px;gap:8px}
+  .fields{grid-template-columns:1fr}
+  .files .btn{padding:4px 9px}
+  .case b{max-width:52vw}
+}
+@media (max-width:460px){
+  .kpis,.econ-in{grid-template-columns:1fr}
+  .fu-item{grid-template-columns:1fr}
+}
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brandrow">
+      <div class="brand"><span class="glyph" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>بوم کسب‌وکار</div>
+      <div class="case"><b id="caseName"></b><span class="stg" id="caseStage"></span></div>
+      <div class="files">
+        <button class="btn ghost sm" id="newCase">پروندهٔ جدید</button>
+        <button class="btn ghost sm" id="openJson">باز کردن پرونده</button>
+        <button class="btn ghost sm dl-only" id="saveJson">ذخیرهٔ پرونده</button>
+        <input type="file" id="fileIn" accept=".json,application/json" hidden>
+      </div>
+    </div>
+    <nav class="stepper" id="stepper" aria-label="مراحل"></nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="banner" id="sampleBanner" hidden><b>پروندهٔ نمونه</b><span>«سبزینه‌باکس» یک کسب‌وکار فرضی است تا ابزار را پر شده ببینید. با اولین ویرایش، این پرونده مال شما می‌شود؛ برای شروع از صفر «پروندهٔ جدید» را بزنید.</span></div>
+
+  <!-- ۱ -->
+  <section class="pane" id="pane-intake" hidden>
+    <div class="pane-head"><div><h1>دریافت اطلاعات</h1><p>مشخصات پرونده را ثبت کنید، هر چه از بنیان‌گذار گرفته‌اید در یادداشت‌ها بریزید و اگر اطلاعات کم است، پیام درخواست را برایش بفرستید.</p></div></div>
+    <div class="grid2">
+      <div class="card">
+        <h3>مشخصات پرونده</h3>
+        <div class="fields">
+          <label class="field"><span>نام کسب‌وکار</span><input id="m-name" data-meta="name"></label>
+          <label class="field"><span>بنیان‌گذار</span><input id="m-founder" data-meta="founder"></label>
+          <label class="field"><span>صنعت</span><input id="m-industry" data-meta="industry"></label>
+          <label class="field"><span>منبع اطلاعات</span><input id="m-source" data-meta="source" placeholder="جلسهٔ حضوری، پیچ‌دک، فرم…"></label>
+          <label class="field"><span>تحلیل‌گر</span><input id="m-analyst" data-meta="analyst"></label>
+          <label class="field"><span>تاریخ</span><input id="m-date" data-meta="date"></label>
+        </div>
+        <div class="lbl" style="margin-top:16px">مرحلهٔ کسب‌وکار <small>سؤال‌های مرحله‌ای و انتظار نمره با این تغییر می‌کنند</small></div>
+        <div class="seggrid" id="stageSeg"></div>
+      </div>
+      <div class="card">
+        <h3>یادداشت‌های خام بنیان‌گذار</h3>
+        <p class="sub">متن جلسه، پیام‌ها یا متن پیچ‌دک را اینجا بچسبانید.</p>
+        <textarea id="raw" placeholder="هر چه از بنیان‌گذار شنیده یا گرفته‌اید…"></textarea>
+        <div class="row ai-only" style="margin-top:10px">
+          <button class="btn accent" id="draftBtn">پیش‌نویس بوم با هوش مصنوعی</button>
+          <button class="btn ghost sm" id="draftStop" hidden>توقف</button>
+        </div>
+        <div class="status ai-only" id="draftStatus">فقط فیلدهای خالی پر می‌شوند و ابهام‌ها خودکار علامت می‌خورند.</div>
+        <div class="manual ai-off" hidden>
+          <div class="lbl">پیش‌نویس با هوش مصنوعی (روش دستی)</div>
+          <ol class="msteps"><li>پرامپت را کپی کنید و در یک گفتگوی Claude بچسبانید.</li><li>کل پاسخ Claude را در کادر زیر بچسبانید و «اعمال» را بزنید.</li></ol>
+          <div class="row"><button class="btn accent sm" id="mDraftCopy">کپی پرامپت</button></div>
+          <textarea id="mDraftIn" rows="2" placeholder="پاسخ Claude را اینجا بچسبانید…"></textarea>
+          <div class="row"><button class="btn sm" id="mDraftApply">اعمال پاسخ</button></div>
+          <div class="status" id="mDraftStatus">فقط فیلدهای خالی پر می‌شوند و ابهام‌ها خودکار علامت می‌خورند.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="row" style="justify-content:space-between"><div><h3>پیام درخواست اطلاعات برای بنیان‌گذار</h3><p class="sub">بر اساس مرحلهٔ انتخاب‌شده ساخته می‌شود؛ قبل از ارسال ویرایشش کنید.</p></div><button class="btn sm" id="copyReq">کپی پیام</button></div>
+      <textarea id="requestMsg"></textarea>
+    </div>
+    <div class="row" style="justify-content:space-between">
+      <button class="link" id="loadSample">نمایش پروندهٔ نمونه</button>
+      <button class="btn" data-step="canvas">ادامه: تکمیل بوم ←</button>
+    </div>
+  </section>
+
+  <!-- ۲ -->
+  <section class="pane" id="pane-canvas" hidden>
+    <div class="pane-head">
+      <div><h1>تکمیل بوم</h1><p>روی هر خانه بزنید، پاسخ‌ها را بنویسید، موارد مبهم را علامت بزنید و در پایان به بلوک نمره بدهید.</p></div>
+      <div class="toolbar">
+        <div class="miniseg" id="modeSeg"></div>
+        <label class="row" style="gap:6px;font-size:13px;color:var(--ink-2)">مرحله<select id="stageMini" aria-label="مرحله"></select></label>
+      </div>
+    </div>
+    <div>
+      <div id="nav"></div>
+      <div class="regions"><span class="r-d"><i></i>سمت مشتری</span><span class="r-f"><i></i>زیرساخت</span><span class="r-v"><i></i>مالی</span><span class="r-s"><i></i>بلوک‌های مکمل</span></div>
+    </div>
+    <div class="card" id="editor"></div>
+  </section>
+
+  <!-- ۳ -->
+  <section class="pane" id="pane-econ" hidden>
+    <div class="pane-head"><div><h1>اقتصاد واحد</h1><p>اعداد پایه را به تومان و بر مبنای ماهانه وارد کنید. شاخص‌ها و هشدارها خودکار حساب می‌شوند؛ اعداد تقریبی هم کافی است.</p></div></div>
+    <div class="card"><div class="econ-in" id="econInputs"></div></div>
+    <div class="kpis" id="econOut"></div>
+    <div class="row" style="justify-content:space-between"><button class="btn ghost" data-step="canvas">→ تکمیل بوم</button><button class="btn" data-step="followup">ادامه: پیگیری ابهام‌ها ←</button></div>
+  </section>
+
+  <!-- ۴ -->
+  <section class="pane" id="pane-followup" hidden>
+    <div class="pane-head"><div><h1>پیگیری ابهام‌ها</h1><p>هر چه علامت ابهام خورده، به‌علاوهٔ سؤال‌های انتخابی، در یک پیام آمادهٔ ارسال برای بنیان‌گذار جمع می‌شود.</p></div></div>
+    <div class="grid2">
+      <div class="card"><h3>ابهام‌های علامت‌خورده</h3><div id="fuFlags"></div></div>
+      <div class="card">
+        <h3>سؤال‌های تکمیلی</h3>
+        <label class="check" style="border:0"><input type="checkbox" id="fuEmpty"><span>سؤال‌های کلیدیِ بی‌پاسخ هم اضافه شوند</span></label>
+        <div class="lbl" style="margin-top:10px">پیشنهاد هوش مصنوعی</div>
+        <div id="fuAI"></div>
+        <div class="lbl" style="margin-top:14px">سؤال دلخواه</div>
+        <div id="fuCustom"></div>
+        <button class="btn ghost sm" id="addCustom">افزودن سؤال</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="row" style="justify-content:space-between"><div><h3>پیام پیگیری</h3><p class="sub">پیش از ارسال ویرایشش کنید؛ با هر تغییر بالا دوباره ساخته می‌شود.</p></div><button class="btn sm" id="copyFu">کپی پیام</button></div>
+      <textarea id="fuMsg"></textarea>
+    </div>
+    <div class="row" style="justify-content:flex-end"><button class="btn" data-step="dash">ادامه: داشبورد و تحلیل ←</button></div>
+  </section>
+
+  <!-- ۵ -->
+  <section class="pane" id="pane-dash" hidden>
+    <div class="pane-head"><div><h1>داشبورد و تحلیل</h1><p>سلامت مدل بر اساس نمرهٔ وزنی ۹ بلوک اصلی؛ ارزش پیشنهادی و مشتری بیشترین وزن را دارند.</p></div></div>
+    <div class="card dtop" id="dashTop"></div>
+    <div class="card"><h3>نمرهٔ بلوک‌ها در برابر انتظار مرحله</h3><p class="sub">خط عمودی تیره انتظار مرحلهٔ فعلی است.</p><div id="bars"></div></div>
+    <div class="card"><h3>نمای بوم</h3><p class="sub">برای هر خانه «خلاصه» نمایش داده می‌شود؛ اگر خلاصه نداشته باشد، اولین پاسخ‌ها.</p><div id="canvasView"></div></div>
+    <div class="card"><h3>هشدارها و ناسازگاری‌ها</h3><p class="sub">قواعد خودکار: تطابق بلوک‌ها با هم، با مرحله و با اقتصاد واحد.</p><div id="warnList"></div></div>
+    <div class="card">
+      <div class="row" style="justify-content:space-between;align-items:flex-start">
+        <div><h3>تحلیل هوش مصنوعی</h3><p class="sub">جمع‌بندی، نقاط قوت و ضعف، ناسازگاری‌ها، ریسک‌ها، اقدامات و نمرهٔ پیشنهادی برای مقایسه با نمرهٔ شما.</p></div>
+        <div class="row ai-only"><button class="btn accent" id="aiBtn">اجرای تحلیل</button><button class="btn ghost sm" id="aiStop" hidden>توقف</button></div>
+      </div>
+      <div class="status ai-only" id="aiStatus"></div>
+      <div class="manual ai-off" hidden>
+        <ol class="msteps"><li>پرامپت تحلیل را کپی کنید و در یک گفتگوی Claude بچسبانید.</li><li>کل پاسخ را در کادر زیر بچسبانید و «اعمال» را بزنید.</li></ol>
+        <div class="row"><button class="btn accent sm" id="mAiCopy">کپی پرامپت تحلیل</button></div>
+        <textarea id="mAiIn" rows="2" placeholder="پاسخ Claude را اینجا بچسبانید…"></textarea>
+        <div class="row"><button class="btn sm" id="mAiApply">اعمال پاسخ</button></div>
+        <div class="status" id="mAiStatus"></div>
+      </div>
+      <div id="aiReport"></div>
+    </div>
+    <div class="card">
+      <h3>خروجی</h3>
+      <p class="sub">گزارش HTML را در مرورگر باز کنید و با «چاپ» به PDF تبدیلش کنید. فایل پرونده را بعداً با «باز کردن پرونده» ادامه دهید.</p>
+      <div class="exports">
+        <button class="btn dl-only" id="xlsxBtn">خروجی اکسل</button>
+        <button class="btn dl-only" id="reportBtn">گزارش قابل‌چاپ</button>
+        <button class="btn ghost dl-only" id="saveJson2">ذخیرهٔ پرونده</button>
+      </div>
+      <div class="status" id="dlNote" hidden>ذخیرهٔ فایل در این نما در دسترس نیست.</div>
+    </div>
+  </section>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
