@@ -949,7 +949,7 @@ function requestMessage() {
 /* ===== مرحله ۲: بوم ===== */
 function tileHTML(b, clickable = true) {
   const s = blockStats(b.id), st = S.blocks[b.id];
-  return `<button class="tile r-${b.region} ${S.current === b.id && clickable ? 'on' : ''}" data-block="${b.id}" style="grid-area:${b.id}">
+  return `<button class="tile r-${b.region} ${S.current === b.id && clickable ? 'on' : ''}" data-block="${b.id}"${b.supp ? "" : ` style="grid-area:${b.id}"`}>
     <span class="tno">${faNum(b.no)}</span>
     <span class="ttl">${b.title}</span>
     <span class="tmeta">
@@ -1106,7 +1106,7 @@ function renderDash() {
 function cellHTML(b) {
   const st = S.blocks[b.id];
   const pts = filled(st.summary) ? [st.summary] : visibleQs(b, 'all').map(q => st.answers[q.id]).filter(filled).slice(0, 2);
-  return `<div class="cell r-${b.region}" style="grid-area:${b.id}">
+  return `<div class="cell r-${b.region}"${b.supp ? "" : ` style="grid-area:${b.id}"`}>
     <div class="ch"><span>${b.title}</span><span class="sc ${st.score ? 's' + st.score : ''}">${st.score ? faNum(st.score) : '—'}</span></div>
     ${pts.length ? pts.map(p => `<p>${esc(p.length > 160 ? p.slice(0, 160) + '…' : p)}</p>`).join('') : '<p class="muted">خالی</p>'}
     ${st.chips.length ? `<div class="cchips">${st.chips.map(c => `<span>${esc(c)}</span>`).join('')}</div>` : ''}
